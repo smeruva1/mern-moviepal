@@ -43,9 +43,9 @@ function SearchMovies() {
   };
 
   // create function to handle saving a movie to our database
-  const handleSaveMovie = (movieId) => {
+  const handleSaveMovie = (id) => {
     // find the movie in `searchedMovies` state by the matching id
-    const movieToSave = searchedMovies.find((movie) => movie.id === movieId);
+    const movieToSave = searchedMovies.find((movie) => movie.id === id);
     console.log(movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -97,16 +97,16 @@ function SearchMovies() {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <p className='small'>Popularity: {movie.popularity}</p>
-                  <p className='small'>vote_average: {movie.vote_average}</p>
+                  <p className='small'>Vote Average: {movie.vote_average}</p>
                   <Card.Text>{movie.overview}</Card.Text>
                   {userData.username && (
                     <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
-                        ? 'This movie has already been saved!'
-                        : 'Save this Movie!'}
+                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                        ? 'In Watchlist!'
+                        : 'Add to Watchlist!'}
                     </Button>
                   )}
                 </Card.Body>

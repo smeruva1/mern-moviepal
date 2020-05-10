@@ -46,7 +46,7 @@ function SavedMovies() {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <p className='small'>Popularity: {movie.popularity}</p>
-                  <p className='small'>vote_average: {movie.vote_average}</p>
+                  <p className='small'>Vote Average: {movie.vote_average}</p>
                   <Card.Text>{movie.overview}</Card.Text>
                   {userData.username && (
                     <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>

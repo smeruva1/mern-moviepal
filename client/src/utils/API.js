@@ -1,4 +1,5 @@
 import axios from 'axios';
+require('dotenv').config();
 
 export const getAllUsers = function () {
   return axios.get('/api/users');
@@ -36,6 +37,7 @@ export const deleteMovie = function (movieId, token) {
 export const searchTheMovies = function (query) {
 console.log(query);
   // return axios.get('https://www.googleapis.com/movies/v1/volumes', { params: { q: query } });
-  return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
+  // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
+  return axios.get('https://api.themoviedb.org/3/search/movie?api_key='+process.env.REACT_APP_THEMOVIEDB+'&query=' + query);
   
 };

@@ -9,9 +9,11 @@ const movieSchema = new Schema({
   poster_path: {
     type: String,
   },
+  //save movie id from The movie DB
   id: {
     type: String,
     required: true,
+    unique: true,
   },
   title: {
     type: String,

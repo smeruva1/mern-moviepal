@@ -17,6 +17,7 @@ function App() {
     username: '',
     email: '',
     movieCount: 0,
+
     // method to get user data after logging in
     getUserData: () => {
       // if user's logged in get the token or return null
@@ -36,7 +37,7 @@ function App() {
   // on load, get user data if a token exists
   useEffect(() => {
     userInfo.getUserData();
-  });
+  }, []);
 
   return (
     <Router>
