@@ -1,5 +1,5 @@
 body, .submitBtn {
-  background-color: rgb(236, 70, 28);
+  background-color: #F49F1C;
    font-family: 'Baloo 2', cursive;
 }
 
@@ -10,11 +10,12 @@ h4,
 h5,
 h6 {
   font-family: 'Baloo 2', cursive;
+  color: white;
 }
 
 .small {
   font-weight: 300;
-  font-style: italic;
+  font-style: italic;  
 }
 
 .card-columns {
@@ -47,10 +48,17 @@ h6 {
   margin-left: auto;
 }
 
-.bg-dark {
-  background-color: #1e466d!important;
+.bg-navy {
+  background: #2F2F4F;
 }
 
+.bg-dark {
+  background-color:#2F2F4F;
+  color: white;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color:white;
+}
 .homeContainer {
   zoom: 0.75;
 }

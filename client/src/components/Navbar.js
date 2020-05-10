@@ -15,9 +15,9 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar className="bg-navy" expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
+          <Navbar.Brand as={Link} to='/' className="NavlinkColor">
             Movie Search
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
