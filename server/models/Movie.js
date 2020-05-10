@@ -11,9 +11,11 @@ const movieSchema = new Schema({
   },
   id: {
     type: String,
+    required: true,
   },
   title: {
     type: String,
+    required: true,
   },
   vote_average: {
     type: String,
@@ -24,7 +26,11 @@ const movieSchema = new Schema({
   release_date: {
     type: Date,
   },
-
+  genre_ids: [
+    {
+      type: String,
+    },
+  ],
 
   // authors: [
   //   {
