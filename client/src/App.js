@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
+import NewMovies from './pages/NewMovies';
+import PopularMovies from './pages/PopularMovies';
+import TopRatedMovies from './pages/TopRatedMovies';
+import TVShows from './pages/TVShows';
 import Navbar from './components/Navbar';
 
 import * as API from './utils/API';
@@ -47,6 +51,10 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path='/' component={SearchMovies} />
+            <Route exact path='/new' component={NewMovies} />
+            <Route exact path='/popular' component={PopularMovies} />
+            <Route exact path='/toprated' component={TopRatedMovies} />
+            <Route exact path='/tvshows' component={TVShows} />
             <Route exact path='/saved' component={SavedMovies} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>

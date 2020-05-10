@@ -33,11 +33,30 @@ export const deleteMovie = function (movieId, token) {
 };
 
 // make a search to The movie DB api
-// https://www.googleapis.com/movies/v1/volumes?q=harry+potter
 export const searchTheMovies = function (query) {
-console.log(query);
-  // return axios.get('https://www.googleapis.com/movies/v1/volumes', { params: { q: query } });
+//console.log(query);
   // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
   return axios.get('https://api.themoviedb.org/3/search/movie?api_key='+process.env.REACT_APP_THEMOVIEDB+'&query=' + query);
   
+};
+
+//popular movies
+export const popularTheMovies = function () {
+  //console.log("Hi from popular API axios call");
+    return axios.get('https://api.themoviedb.org/3/movie/popular?api_key='+process.env.REACT_APP_THEMOVIEDB+'&language=en-US&page=1');    
+  };
+  
+  //new movies
+export const newTheMovies = function () {  
+    return axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key='+process.env.REACT_APP_THEMOVIEDB+'&language=en-US&page=1');    
+  };
+
+  //Top Rated movies
+export const topRatedTheMovies = function () {  
+  return axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key='+process.env.REACT_APP_THEMOVIEDB+'&language=en-US&page=1');    
+};
+
+//TV Shows 
+export const tvShowsTheMovies = function () {  
+  return axios.get('https://api.themoviedb.org/3/tv/popular?api_key='+process.env.REACT_APP_THEMOVIEDB+'&language=en-US&page=1');    
 };

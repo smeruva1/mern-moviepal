@@ -26,6 +26,18 @@ function AppNavbar() {
               <Nav.Link as={Link} to='/'>
                 Search For Movies
               </Nav.Link>
+              <Nav.Link as={Link} to='/new'>
+                New Movies
+              </Nav.Link>
+              <Nav.Link as={Link} to='/popular'>
+                Popular Movies
+              </Nav.Link>
+              <Nav.Link as={Link} to='/toprated'>
+                Top Rated Movies
+              </Nav.Link>
+              <Nav.Link as={Link} to='/tvshows'>
+                TV Shows
+              </Nav.Link>
               {/* if user is logged in show saved movies and logout */}
               {username ? (
                 <>
@@ -35,8 +47,8 @@ function AppNavbar() {
                   <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-              )}
+                  <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                )}
             </Nav>
           </Navbar.Collapse>
         </Container>
