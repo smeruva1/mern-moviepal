@@ -33,31 +33,10 @@ const movieSchema = new Schema({
       type: String,
     },
   ],
-
-  // authors: [
-  //   {
-  //     type: String,
-  //   },
-  // ],
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
-  // // saved movie id from themoviedb
-  // movieId: {
-  //   type: String,
-  //   required: true,
-  // },
-  // image: {
-  //   type: String,
-  // },
-  // link: {
-  //   type: String,
-  // },
-  // title: {
-  //   type: String,
-  //   required: true,
-  // },
-});
+    rating: {
+      type: String,
+      // required: true,
+  },
+  });
 
 module.exports = movieSchema;

@@ -1,4 +1,5 @@
-body {
+body, .submitBtn {
+  background-color: rgb(236, 70, 28);
    font-family: 'Baloo 2', cursive;
 }
 
@@ -14,4 +15,46 @@ h6 {
 .small {
   font-weight: 300;
   font-style: italic;
+}
+
+.card-columns {
+  column-count: 5;
+  -webkit-column-gap: 1.25rem;
+  -moz-column-gap: 1.25rem;
+  grid-column-gap: 1.25rem;
+  column-gap: 1.25rem;
+  orphans: 1;
+  widows: 1;
+
+}
+
+.btn-info.disabled, .btn-info:disabled {
+  color: #fff;
+  background-color: rgb(61, 6, 6);
+  border-color: rgb(61, 6, 6)
+}
+.btn-info {
+  color: #fff;
+  background-color: yellowgreen;
+  border-color: yellowgreen
+}
+
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bg-dark {
+  background-color: #1e466d!important;
+}
+
+.homeContainer {
+  zoom: 0.75;
+}
+
+input[type= "radio"]{
+  display: none
 }

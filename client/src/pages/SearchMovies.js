@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
+import { FaStar } from 'react-icons/fa';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMovie, searchTheMovies } from '../utils/API';
@@ -13,6 +13,39 @@ function SearchMovies() {
 
   const userData = useContext(UserInfoContext);
 
+    const Star = (props) => {
+
+      console.log("Hi from Star");
+  
+      const [rating, setRating] = useState(props.rating);
+      const [hover, setHover] = useState(null)
+      return (
+        <div>
+          {[...Array(5)].map((star, i) => {
+            const rateValue = i + 1;
+  
+            return (
+              <label>
+                <input type='radio'
+                  name='rating'
+                  value={rateValue}
+                  // onClick={() =>  setRating(rateValue)}
+                  onClick={() => props.handleRateMovie(props.id, rateValue)}
+                />
+                <FaStar className='star'
+                  color={rateValue <= (hover || rating) ? "yellow" : "gray"}
+                  onMouseEnter={() => setHover(rateValue)}
+                  onMouseLeave={() => setHover(null)}
+                />
+  
+              </label>
+            )
+          })}
+  
+        </div>
+      )
+    }
+
   // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +53,7 @@ function SearchMovies() {
     if (!searchInput) {
       return false;
     }
+
 
     searchTheMovies(searchInput)
       .then(({ data }) => {
@@ -30,9 +64,10 @@ function SearchMovies() {
           id: movie.id,
           title: movie.title,
           vote_average: movie.vote_average,
-          overview: movie.overview,
+          overview: movie.overview.substring(0, 100).concat("..."),
           release_date: movie.release_date,
           genre_ids: movie.genre_ids,
+          rating:0,
         }));
         console.log(movieData);
 
@@ -41,6 +76,25 @@ function SearchMovies() {
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
   };
+
+  const handleRateMovie = (id, rating) => {
+    const updatedSearchMovies = [...searchedMovies];
+    console.log("Hi from handleRateMovie");
+    console.log("value of id:  "+ id);
+    console.log("value of rating:  "+ rating);
+
+    updatedSearchMovies.forEach(movie => {
+        if(movie.id === id) {
+          
+          movie.rating = rating;
+          console.log("inside if of handleRateMovie");
+            console.log("value of id:  "+ id);
+          console.log("value of rating:  "+ rating);
+
+        }
+    });
+    setSearchedMovies(updatedSearchMovies);
+}
 
   // create function to handle saving a movie to our database
   const handleSaveMovie = (id) => {
@@ -60,6 +114,9 @@ function SearchMovies() {
       .catch((err) => console.log(err));
   };
 
+
+  
+  
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -78,7 +135,7 @@ function SearchMovies() {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
+                <Button type='submit' variant='success' size='lg' className="submitBtn">
                   Submit Search
                 </Button>
               </Col>
@@ -96,9 +153,12 @@ function SearchMovies() {
                 {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Popularity: {movie.popularity}</p>
-                  <p className='small'>Vote Average: {movie.vote_average}</p>
+                  <h6 className='small'>Popularity: {movie.popularity}</h6>
+                  <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
+
+                  <Star rating = {searchedMovies.rating} id = {movie.id}  handleRateMovie = {handleRateMovie}/> 
+
                   {userData.username && (
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
@@ -115,6 +175,7 @@ function SearchMovies() {
           })}
         </CardColumns>
       </Container>
+
     </>
   );
 }

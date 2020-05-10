@@ -21,7 +21,7 @@ function PopularMovies() {
           id: movie.id,
           title: movie.title,
           vote_average: movie.vote_average,
-          overview: movie.overview,
+          overview: movie.overview.substring(0, 100).concat("..."),
           release_date: movie.release_date,
           genre_ids: movie.genre_ids,
         }));
@@ -51,11 +51,11 @@ function PopularMovies() {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Popular Movies!</h1>
-        </Container>
-      </Jumbotron>
+      {/* <Jumbotron fluid className='text-light bg-dark'> */}
+      <Container>
+        <h1>Popular Movies!</h1>
+      </Container>
+      {/* </Jumbotron> */}
 
       <Container>
         <h2>{popularMoviesResult.length ? `Viewing ${popularMoviesResult.length} results:` : 'Search for a movie to begin'}</h2>
@@ -66,8 +66,8 @@ function PopularMovies() {
                 {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Popularity: {movie.popularity}</p>
-                  <p className='small'>Vote Average: {movie.vote_average}</p>
+                  <h6 className='small'>Popularity: {movie.popularity}</h6>
+                  <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
                   {userData.username && (
                     <Button

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
+import HomeMovies from './pages/HomeMovies';
 import NewMovies from './pages/NewMovies';
 import PopularMovies from './pages/PopularMovies';
 import TopRatedMovies from './pages/TopRatedMovies';
@@ -50,7 +51,8 @@ function App() {
         <UserInfoContext.Provider value={userInfo}>
           <Navbar />
           <Switch>
-            <Route exact path='/' component={SearchMovies} />
+            <Route exact path='/search' component={SearchMovies} />
+            <Route exact path='/' component={HomeMovies} />
             <Route exact path='/new' component={NewMovies} />
             <Route exact path='/popular' component={PopularMovies} />
             <Route exact path='/toprated' component={TopRatedMovies} />
