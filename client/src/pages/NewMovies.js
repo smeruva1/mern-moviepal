@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import {Container,Button, Card, CardColumns } from 'react-bootstrap';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
@@ -71,10 +71,10 @@ function NewMovies() {
                   <Card.Text>{movie.overview}</Card.Text>
                   {userData.username && (
                     <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                      {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
                         ? 'In Watchlist!'
                         : 'Add to Watchlist!'}
                     </Button>
