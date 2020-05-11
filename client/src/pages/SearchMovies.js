@@ -14,9 +14,7 @@ function SearchMovies() {
   const userData = useContext(UserInfoContext);
 
     const Star = (props) => {
-
-      console.log("Hi from Star");
-  
+ 
       const [rating, setRating] = useState(props.rating);
       const [hover, setHover] = useState(null)
       return (
@@ -29,8 +27,13 @@ function SearchMovies() {
                 <input type='radio'
                   name='rating'
                   value={rateValue}
-                  // onClick={() =>  setRating(rateValue)}
-                  onClick={() => props.handleRateMovie(props.id, rateValue)}
+                  //onClick={() =>  setRating(rateValue)}
+                  onClick={() => {                    
+                    console.log(rateValue,props.id, rating);
+                    props.handleRateMovie(props.id, rateValue);
+                    setRating(rateValue);  
+                  }
+                  }
                 />
                 <FaStar className='star'
                   color={rateValue <= (hover || rating) ? "yellow" : "gray"}
@@ -79,18 +82,10 @@ function SearchMovies() {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...searchedMovies];
-    console.log("Hi from handleRateMovie");
-    console.log("value of id:  "+ id);
-    console.log("value of rating:  "+ rating);
-
+    
     updatedSearchMovies.forEach(movie => {
         if(movie.id === id) {
-          
-          movie.rating = rating;
-          console.log("inside if of handleRateMovie");
-            console.log("value of id:  "+ id);
-          console.log("value of rating:  "+ rating);
-
+              movie.rating = rating;    
         }
     });
     setSearchedMovies(updatedSearchMovies);
@@ -157,9 +152,14 @@ function SearchMovies() {
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
 
-                  <Star rating = {searchedMovies.rating} id = {movie.id}  handleRateMovie = {handleRateMovie}/> 
+                  
 
                   {userData.username && (
+                   <div>
+                   <Star rating = {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)? 
+                      userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id).rating :
+                      searchedMovies.rating} id = {movie.id}  handleRateMovie = {handleRateMovie}/> 
+                    
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
                       className='btn-block btn-info'
@@ -168,6 +168,7 @@ function SearchMovies() {
                         ? 'In Watchlist!'
                         : 'Add to Watchlist!'}
                     </Button>
+                    </div>
                   )}
                 </Card.Body>
               </Card>

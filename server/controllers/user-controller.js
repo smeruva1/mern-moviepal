@@ -28,6 +28,32 @@ module.exports = {
   },
 
 
+  // get a movie rating for a user
+  async getMovieRating({ user = null, params }, res) {
+    const userList = await User.find({
+      _id: { $in: params.users.split(',') },
+      "savedMovies.id": params.movieid
+    });
+
+    let totalRating = 0;
+
+    userList.forEach(user => {
+      user.savedMovies.forEach(movie => {
+        if (movie.id == params.movieid) {
+          totalRating += movie.rating;
+        }
+      }
+
+      )
+    })
+    if (!userList) {
+      return res.status(400).json({ message: 'Cannot find a user with this id!' });
+    }
+
+     res.json({ rating: userList.length > 0? totalRating / userList.length : 0 });
+  },
+
+
 
   // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
   async createUser({ body }, res) {
@@ -39,9 +65,9 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
-  
-  
-  
+
+
+
   // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
   // {body} is destructured req.body
   async login({ body }, res) {
@@ -58,9 +84,9 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
-  
-  
-  
+
+
+
   // save a movie to a user's `savedMovies` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveMovie({ user, body }, res) {
@@ -77,9 +103,9 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
-  
-  
-  
+
+
+
   // remove a movie from `savedMovies`
   async deleteMovie({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(

@@ -23,6 +23,8 @@ const userSchema = new Schema(
     },
     // set savedMovies to be an array of data that adheres to the movieSchema
     savedMovies: [movieSchema],
+    friends: [String],
+    family:[String],
   },
   // set this to use virtual below
   {

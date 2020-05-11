@@ -15,15 +15,15 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar className="bg-navy" expand='lg'>
+      <Navbar  className="color-nav" variant="white" expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/' className="NavlinkColor">
+          <Navbar.Brand as={Link} to='/'>
             Movie Search
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/search'>
+              <Nav.Link  as={Link} to='/search'>
                 Search For Movies
               </Nav.Link>
               <Nav.Link as={Link} to='/'>

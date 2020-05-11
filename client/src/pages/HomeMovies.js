@@ -73,14 +73,14 @@ function HomeMovies() {
     let movieToSave = [];
 
     if (category == "popular") {
-      const movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
+      movieToSave = home5PopularMoviesResult.find((movie) => movie.id == id);
     } else if (category == "toprated") {
-      const movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
+      movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id == id);
     } else if (category == "New") {
-      const movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
+      movieToSave = home5NewMoviesResult.find((movie) => movie.id == id);
     }
 
-    console.log(movieToSave);
+    // console.log(movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
