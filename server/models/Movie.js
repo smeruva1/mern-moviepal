@@ -11,7 +11,7 @@ const movieSchema = new Schema({
   },
   //save movie id from The movie DB
   id: {
-    type: String,
+    type: Number,
     required: true,    
   },
   title: {

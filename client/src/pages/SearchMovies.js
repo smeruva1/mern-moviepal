@@ -8,7 +8,9 @@ import { saveMovie, searchTheMovies } from '../utils/API';
 import queryString from 'query-string';
 
 function SearchMovies(props) {
+
   const { searchText } = queryString.parse(props.location.search)
+
   const [searchedMovies, setSearchedMovies] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
@@ -34,7 +36,7 @@ function SearchMovies(props) {
                 onClick={() => {
                   // console.log(rateValue, props.id, rating);
                   props.handleRateMovie(props.id, rateValue);
-                  setRating(rateValue);
+                  // setRating(rateValue);
                 }
                 }
               />
@@ -52,6 +54,20 @@ function SearchMovies(props) {
     )
   }
 
+  const handleRateMovie = (id, rating) => {
+    const updatedSearchMovies = [...searchedMovies];
+    console.log(updatedSearchMovies);
+    console.log(searchedMovies);
+
+    updatedSearchMovies.forEach(movie => {
+      if (movie.id === id) {
+        movie.rating = rating;
+      }
+    });
+    setSearchedMovies(updatedSearchMovies);    
+  }
+
+
   useEffect(() => {
     if (searchText) {
       searchFor(searchText)
@@ -63,13 +79,13 @@ function SearchMovies(props) {
   // const userData = useContext(UserInfoContext);
 
   // create method to search for movies and set state on form submit
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault();
 
-    if (!searchInput) {
-      return false;
-    }
-  }
+  //   if (!searchInput) {
+  //     return false;
+  //   }
+  // }
 
 
   function searchFor(title) {
@@ -123,17 +139,7 @@ function SearchMovies(props) {
   //     .catch((err) => console.log(err));
   // };
 
-  const handleRateMovie = (id, rating) => {
-    const updatedSearchMovies = [...searchedMovies];
-
-    updatedSearchMovies.forEach(movie => {
-      if (movie.id === id) {
-        movie.rating = rating;
-      }
-    });
-    setSearchedMovies(updatedSearchMovies);
-  }
-
+  
   // create function to handle saving a movie to our database
   const handleSaveMovie = (id) => {
     // find the movie in `searchedMovies` state by the matching id
@@ -168,20 +174,23 @@ function SearchMovies(props) {
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
 
+
                   {userData.username && (
                     <div>
 
-                      <Star rating={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id) ?
-                        userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id).rating :
+                      <Star rating= {userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                        userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
                         movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                       <Button
-                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                        disabled={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveMovie(movie.id)}>
-                        {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+
+                        {userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)
                           ? 'In Watchlist!'
                           : 'Add to Watchlist!'}
+
                       </Button>
 
                     </div>

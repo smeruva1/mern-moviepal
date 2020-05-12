@@ -38,33 +38,34 @@ function App() {
 
           setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
 
-          return { username, email, savedMovies, friends, family, movieCount};
+          // return { username, email, savedMovies, friends, family, movieCount};
         }
         )
-        .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
+        // .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
           
-          await savedMovies.forEach(async movie => {
+        //   await savedMovies.forEach(async movie => {
 
-            if (friends.length > 0) {
-              await API.getMovieRating(movie.id, friends, token)
-                .then(({ data }) => {
-                  movie.friendRating = data.rating;
-                })
-                .catch((err) => console.log(err));
-            }
+        //     if (friends.length > 0) {
+        //       await API.getMovieRating(movie.id, friends, token)
+        //         .then(({ data }) => {
+        //           movie.friendRating = data.rating;
+        //         })
+        //         .catch((err) => console.log(err));
+        //     }
 
-            if (family.length > 0) {
-              await API.getMovieRating(movie.id, family, token)
-                .then(({ data }) => {
-                  movie.familyRating = data.rating;
-                })
-                .catch((err) => console.log(err));
-            }
-          })
+        //     if (family.length > 0) {
+        //       await API.getMovieRating(movie.id, family, token)
+        //         .then(({ data }) => {
+        //           movie.familyRating = data.rating;
+        //         })
+        //         .catch((err) => console.log(err));
+        //     }
+        //   })
 
-          setUserInfo({username, email, savedMovies, friends, family, movieCount })
-        }
-        )
+        //   //setUserInfo({username, email, savedMovies, friends, family, movieCount })
+        //   setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
+        // }
+        // )
         .catch((err) => console.log(err));
     },
   });
