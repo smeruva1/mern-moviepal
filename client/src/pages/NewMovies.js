@@ -69,7 +69,7 @@ function NewMovies() {
                   <Card.Title>{movie.title}</Card.Title>
                   <h6 className='small'>Popularity: {movie.popularity}</h6>
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
-                  <Card.Text>{movie.overview}</Card.Text>
+                  {/* <Card.Text>{movie.overview}</Card.Text> */}
                   
                   {userData.username && (
                     <Button

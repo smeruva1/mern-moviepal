@@ -1,14 +1,18 @@
 body {
   background-color: #F49F1C;
    font-family: 'Baloo 2', cursive;
+
+/* background: #c31432;  /* fallback for old browsers */
+/* background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+/* background: linear-gradient(to right, #240b36, #c31432); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+
    }
 
-   .submitBtn, .btn-success {
-    font-family: 'Baloo 2', cursive;
-    background-color: #F49F1C;
-    color: #fff;
-    border-color: #F49F1C; /*set the color you want here*/
+   .bg-dark {
+    /* background-color: #343a40!important; */
 }
+
+
 h1,
 h2,
 h3,
@@ -16,6 +20,8 @@ h4,
 h5,
 h6 {
   font-family: 'Baloo 2', cursive;
+  color: #ced4da;
+
 }
 
 .small {
@@ -139,7 +145,7 @@ input[type= "radio"]{
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: orangered;
+  background:#c31432; 
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.2);
   border-radius:5%;

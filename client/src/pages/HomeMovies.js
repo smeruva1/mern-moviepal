@@ -113,7 +113,7 @@ function HomeMovies() {
                 <Card key={movie.id} border='dark'>
                   {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    {/* <Card.Title>{movie.title}</Card.Title> */}
                     <h6 className='small'>Popularity: {movie.popularity}</h6>
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
@@ -143,7 +143,7 @@ function HomeMovies() {
                 <Card key={movie.id} border='dark'>
                   {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    {/* <Card.Title>{movie.title}</Card.Title> */}
                     <h6 className='small'>Popularity: {movie.popularity}</h6>
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}

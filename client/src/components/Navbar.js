@@ -16,10 +16,11 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+    <Container fluid>
+      <Navbar bg='dark' variant='active' expand='lg'>
         {/* <Navbar className="navbarbg" expand='lg'> */}
-        <Container fluid>
-          <Col xs={12} md={4}>
+        {/* <Container fluid> */}
+          <Col xs={12} md={10}>
             <Navbar.Brand as={Link} to='/'>
               <img
                 src="./moviePal1.jpg"
@@ -75,8 +76,9 @@ function AppNavbar() {
               placeholder='Search for a Movie'
             />
           </Col>
-        </Container>
+        
       </Navbar>
+      </Container>
       {/* set modal data up */}
       <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}
