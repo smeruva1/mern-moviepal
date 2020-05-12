@@ -49,8 +49,8 @@ function TVShowsMovies() {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...tvShowsMoviesResult];
-    console.log(updatedSearchMovies);
-    console.log(tvShowsMoviesResult);
+    // console.log(updatedSearchMovies);
+    // console.log(tvShowsMoviesResult);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
@@ -64,7 +64,7 @@ function TVShowsMovies() {
   useEffect(() => {
     tvShowsTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,

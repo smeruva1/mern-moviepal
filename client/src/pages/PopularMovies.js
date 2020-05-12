@@ -49,8 +49,8 @@ function PopularMovies() {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...popularMoviesResult];
-    console.log(updatedSearchMovies);
-    console.log(popularMoviesResult);
+    // console.log(updatedSearchMovies);
+    // console.log(popularMoviesResult);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
@@ -63,7 +63,7 @@ function PopularMovies() {
   useEffect(() => {
     popularTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         const movieData = data.results.map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,
@@ -122,7 +122,7 @@ function PopularMovies() {
                     <div>
 
                       <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
-                        userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                        userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
                         movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                       <Button

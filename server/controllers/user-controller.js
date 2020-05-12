@@ -14,41 +14,6 @@ module.exports = {
     return res.json(users);
   },
 
-  
-  async getMovieDetails(req, res) {
-  
-    // async getMovieDetails({ user = null, params }, res) {
-    //let movie = await User.savedMovies.findOne({id:req.params.id});
-
-    //   id: { $in: params.users },
-    //   "savedMovies.id": params.movieid
-    // });
-
-    // const userList = await User.find({
-    //   _id: { $in: params.users.split(',') },
-    //   "savedMovies.id": params.movieid
-    // });
-
-    // let movie = await Movie.findOne({id:req.params.id});
-    console.log("inside controller");
-    
-    let utellydata = await axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&
-    source_id=481848`,{headers: {
-        "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-        "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde"
-    
-    //     let utellydata = await axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&
-    // source_id=481848${req.params.id}`,{headers: {
-    //     "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-    //     "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde"
-        // "x-rapidapi-key": process.env.REACT_APP_UTELLY
-        
-    }})
-    //console.log(movie);
-    console.log(utellydata.data);
-    // return res.json({movie, utellydata: utellydata.data});
-    return res.json({utellydata: utellydata.data});
-},
 
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
@@ -67,25 +32,37 @@ module.exports = {
   // get a movie rating for a user
   async getMovieRating({ user = null, params }, res) {
     
+    //console.log(params);
+
     const userList = await User.find({
       _id: { $in: params.users.split(',') },
       "savedMovies.id": params.movieid
     });
 
+    //console.log(userList);
+
     let totalRating = 0;
 
     userList.forEach(user => {
       user.savedMovies.forEach(movie => {
-        if (movie.id === params.movieid) {
+       //console.log(movie);
+        if (movie.id == params.movieid) {
+          // console.log("Hi");
+          // console.log(movie.id, params.movieid);
           totalRating += movie.rating;
         }
       }
-
+      
       )
+
     })
+    //console.log(totalRating);
+
     if (!userList) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
     }
+
+    //console.log({ rating: userList.length > 0? totalRating / userList.length : 0 });
 
      res.json({ rating: userList.length > 0? totalRating / userList.length : 0 });
   },
@@ -126,7 +103,7 @@ module.exports = {
   // save a movie to a user's `savedMovies` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveMovie({ user, body }, res) {
-    console.log(user);
+    //console.log(user);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
@@ -135,7 +112,7 @@ module.exports = {
       );
       return res.json(updatedUser);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       return res.status(400).json(err);
     }
   },

@@ -63,8 +63,8 @@ function HomeMovies() {
 
 
     const updatedSearchMovies = [...movieToSave];
-    console.log(updatedSearchMovies);
-    console.log(movieToSave);
+    // console.log(updatedSearchMovies);
+    // console.log(movieToSave);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
@@ -86,7 +86,7 @@ function HomeMovies() {
   useEffect(() => {
     popularTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.slice(0, 5).map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,
@@ -103,7 +103,7 @@ function HomeMovies() {
 
     topRatedTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.slice(0, 5).map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,
@@ -120,7 +120,7 @@ function HomeMovies() {
 
     newTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.slice(0, 5).map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,

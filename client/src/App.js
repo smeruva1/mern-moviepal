@@ -45,18 +45,26 @@ function App() {
         )
         .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
           
-          console.log(username);
-          console.log(savedMovies);
-          console.log(friends);
-          console.log(movieCount);
+          // console.log(username);
+          // console.log(savedMovies);
+          // console.log(friends);
+          // console.log(movieCount);
 
-          await savedMovies.forEach(async movie => {
+          await savedMovies.map( async movie => {
 
             if (friends.length > 0) {
               await API.getMovieRating(movie.id, friends, token)
                 .then(({ data }) => {
-                  console.log(data);
+                  // console.log(data);
+                  
+                  // console.log(data.rating);
+                  // console.log(movie.friendRating);
+
                   movie.friendRating = data.rating;
+
+                  // console.log(data.rating);
+                  // console.log(movie.friendRating);
+
                 })
                 .catch((err) => console.log(err));
             }
@@ -64,7 +72,17 @@ function App() {
             if (family.length > 0) {
               await API.getMovieRating(movie.id, family, token)
                 .then(({ data }) => {
+
+                  // console.log(data);
+                  
+                  // console.log(data.rating);
+                  // console.log(movie.familyRating);
+
                   movie.familyRating = data.rating;
+
+                  // console.log(data.rating);
+                  // console.log(movie.familyRating);
+
                 })
                 .catch((err) => console.log(err));
             }
