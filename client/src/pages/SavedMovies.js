@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 // import context for global state
@@ -46,9 +46,11 @@ function SavedMovies() {
                 {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <h6 className='small'>Popularity: {movie.popularity}</h6>
-                  <h6 className='small'>Vote Average: {movie.vote_average}</h6>
-                  <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text>                  
+                  <h6 className='small netRating'>Popularity: {movie.popularity}</h6>
+                  <h6 className='small netRating'>Vote Average: {movie.vote_average}</h6>
+                  <h6 className='small fandfRating'>Family Average: {movie.familyRating}</h6>
+                  <h6 className='small fandfRating'>Friends Average: {movie.friendRating}</h6>
+                  {/* <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text> */}
                   {userData.username && (
                     <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
                       Delete this Movie!

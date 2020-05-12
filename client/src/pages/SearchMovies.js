@@ -1,5 +1,5 @@
-import React, { useState, useContext,useEffect } from 'react';
-import { Container,  Col,  Button, Card, CardColumns,} from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from 'react';
+import { Container, Col, Button, Card, CardColumns, } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import UserInfoContext from '../utils/UserInfoContext';
@@ -16,19 +16,7 @@ function SearchMovies(props) {
   // const { movies: savedMovies, getSavedMovies } = useContext(UserInfoContext)
   const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    if (searchText) {
-      searchFor(searchText)
-    }
-  }, [searchText])
-
-
-
-  // const userData = useContext(UserInfoContext);
-
   const Star = (props) => {
-
-    console.log("Hi from Star");
 
     const [rating, setRating] = useState(props.rating);
     const [hover, setHover] = useState(null)
@@ -42,8 +30,13 @@ function SearchMovies(props) {
               <input type='radio'
                 name='rating'
                 value={rateValue}
-                // onClick={() =>  setRating(rateValue)}
-                onClick={() => props.handleRateMovie(props.id, rateValue)}
+                //onClick={() =>  setRating(rateValue)}
+                onClick={() => {
+                  // console.log(rateValue, props.id, rating);
+                  props.handleRateMovie(props.id, rateValue);
+                  setRating(rateValue);
+                }
+                }
               />
               <FaStar className='star'
                 color={rateValue <= (hover || rating) ? "yellow" : "gray"}
@@ -58,6 +51,16 @@ function SearchMovies(props) {
       </div>
     )
   }
+
+  useEffect(() => {
+    if (searchText) {
+      searchFor(searchText)
+    }
+  }, [searchText])
+
+
+
+  // const userData = useContext(UserInfoContext);
 
   // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
@@ -122,18 +125,10 @@ function SearchMovies(props) {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...searchedMovies];
-    console.log("Hi from handleRateMovie");
-    console.log("value of id:  " + id);
-    console.log("value of rating:  " + rating);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
-
         movie.rating = rating;
-        console.log("inside if of handleRateMovie");
-        console.log("value of id:  " + id);
-        console.log("value of rating:  " + rating);
-
       }
     });
     setSearchedMovies(updatedSearchMovies);
@@ -158,15 +153,10 @@ function SearchMovies(props) {
   };
 
 
-
-
   return (
     <>
-     
 
       <Container>
-       
-        
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
@@ -178,24 +168,30 @@ function SearchMovies(props) {
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
 
-                  <Star rating={searchedMovies.rating} id={movie.id} handleRateMovie={handleRateMovie} />
-
                   {userData.username && (
-                    <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
-                        ? 'In Watchlist!'
-                        : 'Add to Watchlist!'}
-                    </Button>
+                    <div>
+
+                      <Star rating={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id) ?
+                        userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id).rating :
+                        movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+
+                      <Button
+                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                        className='btn-block btn-info'
+                        onClick={() => handleSaveMovie(movie.id)}>
+                        {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                          ? 'In Watchlist!'
+                          : 'Add to Watchlist!'}
+                      </Button>
+
+                    </div>
                   )}
                 </Card.Body>
               </Card>
             );
           })}
         </CardColumns>
-      
+
       </Container>
 
     </>
@@ -203,4 +199,3 @@ function SearchMovies(props) {
 }
 
 export default SearchMovies;
-

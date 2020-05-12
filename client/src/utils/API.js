@@ -5,6 +5,10 @@ export const getAllUsers = function () {
   return axios.get('/api/users');
 };
 
+export const getMovieRating = function (movieid, users,token) {
+  return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
+}
+
 // route to get logged in user's info (needs the token)
 export const getMe = function (token) {
   return axios.get('/api/users/me', { headers: { authorization: `Bearer ${token}` } });

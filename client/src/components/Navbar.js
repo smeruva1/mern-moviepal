@@ -22,10 +22,10 @@ function AppNavbar() {
           <Col xs={12} md={4}>
             <Navbar.Brand as={Link} to='/'>
               <img
-                src="./MoviePal.PNG"
+                src="./moviePal1.jpg"
                 // width="90"
-                // height="50"
-                // className="d-inline-block align-top"
+                height="50"
+                className="d-inline-block align-top logo"
                 alt="moviepal logo"
               />{' '} Enrich your movie list wisely
             </Navbar.Brand>

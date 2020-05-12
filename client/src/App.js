@@ -19,6 +19,8 @@ function App() {
   // set data to be used for UserInfoContext and make it available to all other components
   const [userInfo, setUserInfo] = useState({
     savedMovies: [],
+    friends: [],
+    family: [],
     username: '',
     email: '',
     movieCount: 0,
@@ -32,8 +34,36 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, savedMovies, movieCount } }) =>
-          setUserInfo({ ...userInfo, username, email, savedMovies, movieCount })
+        .then(({ data: { username, email, savedMovies, friends, family, movieCount } }) => {
+
+          setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
+
+          return { username, email, savedMovies, friends, family, movieCount};
+        }
+        )
+        .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
+          
+          await savedMovies.forEach(async movie => {
+
+            if (friends.length > 0) {
+              await API.getMovieRating(movie.id, friends, token)
+                .then(({ data }) => {
+                  movie.friendRating = data.rating;
+                })
+                .catch((err) => console.log(err));
+            }
+
+            if (family.length > 0) {
+              await API.getMovieRating(movie.id, family, token)
+                .then(({ data }) => {
+                  movie.familyRating = data.rating;
+                })
+                .catch((err) => console.log(err));
+            }
+          })
+
+          setUserInfo({username, email, savedMovies, friends, family, movieCount })
+        }
         )
         .catch((err) => console.log(err));
     },
