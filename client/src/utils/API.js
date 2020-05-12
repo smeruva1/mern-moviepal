@@ -5,7 +5,7 @@ export const getAllUsers = function () {
   return axios.get('/api/users');
 };
 
-export const getMovieRating = function (movieid, users,token) {
+export const getMovieRating = function (movieid, users, token) {
   return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
 }
 
@@ -29,6 +29,9 @@ export const loginUser = function (userData) {
 
 // save movie data for a logged in user
 export const saveMovie = function (movieData, token) {
+  console.log(movieData);
+  console.log(token);
+
   return axios.put('/api/users', movieData, { headers: { authorization: `Bearer ${token}` } });
 };
 // remove saved movie data for a logged in user
