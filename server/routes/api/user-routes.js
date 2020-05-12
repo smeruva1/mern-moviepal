@@ -7,6 +7,7 @@ const {
   deleteMovie,
   login,
   getMovieRating,
+  getMovieDetails,
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -24,5 +25,7 @@ router.route('/me').get(authMiddleware, getSingleUser);
 router.route('/:username').get(getSingleUser);
 
 router.route('/movies/:id').delete(authMiddleware, deleteMovie);
+
+router.get('/details/:id',getMovieDetails);
 
 module.exports = router;

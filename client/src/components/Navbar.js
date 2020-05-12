@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Navbar, Nav, Col, Form, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, NavLink, Nav, Col, Form, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -48,23 +48,23 @@ function AppNavbar() {
               <table>
                 <tr>
                   <td>
-                    <Nav.Link as={Link} to='/'>
+                    <Nav.Link as={Link} to='/' className="navbar__link" activeClassName="navbar__link--active">
                       Home
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/new'>
+                    <Nav.Link as={Link} to='/new' className="navbar__link"  activeClassName="navbar__link--active">
                       New Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/popular'>
+                    <Nav.Link as={Link} to='/popular' className="navbar__link"  activeClassName="navbar__link--active">
                       Popular Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/toprated'>
+                    <Nav.Link as={Link} to='/toprated'  className="navbar__link" activeClassName="navbar__link--active">
                       Top Rated Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/tvshows'>
+                    <Nav.Link as={Link} to='/tvshows'  className="navbar__link" activeClassName="navbar__link--active">
                       TV Shows
               </Nav.Link>
                   </td><td>
@@ -86,11 +86,11 @@ function AppNavbar() {
                     {username ? (
                       <>
                       <td>
-                        <Nav.Link as={Link} to='/saved'>
+                        <Nav.Link as={Link} to='/saved'  className="navbar__link" activeClassName="navbar__link--active">
                           See {username}'s Watchlist
                   </Nav.Link>                  
                   </td><td>
-                        <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
+                        <Nav.Link onClick={AuthService.logout}  className="navbar__link" activeClassName="navbar__link--active">Logout</Nav.Link>
                         </td>
                       </>
                     ) : (
@@ -118,10 +118,10 @@ function AppNavbar() {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                  <Nav.Link className="login-signup-btn" eventKey='login'>Login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                  <Nav.Link className="login-signup-btn" eventKey='signup'>Sign Up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>

@@ -5,10 +5,6 @@ export const getAllUsers = function () {
   return axios.get('/api/users');
 };
 
-export const getMovieRating = function (movieid, users, token) {
-  return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
-}
-
 // route to get logged in user's info (needs the token)
 export const getMe = function (token) {
   return axios.get('/api/users/me', { headers: { authorization: `Bearer ${token}` } });
@@ -38,6 +34,33 @@ export const saveMovie = function (movieData, token) {
 export const deleteMovie = function (movieId, token) {
   return axios.delete(`/api/users/movies/${movieId}`, { headers: { authorization: `Bearer ${token}` } });
 };
+
+export const getMovieRating = function (movieid, users, token) {
+  return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
+}
+
+
+export const getMovieDetails = function (movieId) {
+  console.log("In API.js about to perform axios.get: " + movieId);
+  
+//*********TESTING ****** */
+  return axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&source_id=`+movieId,{headers: {
+    "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+    "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde" 
+  }});
+        // console.log(utellydata);
+        // return (utellydata);
+        // return axios.get(`/api/users/details/${movieId}`,{ headers: { authorization: `Bearer ${token}` } });
+};
+
+
+// make a search to The movie DB api
+export const searchMovieByID = function (query) {
+  //console.log(query);
+  // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
+  // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&query=' + query);
+  return axios.get('https://api.themoviedb.org/3/movie/'+query+'?api_key=' + process.env.REACT_APP_THEMOVIEDB +'&language=en-US');
+}
 
 // make a search to The movie DB api
 export const searchTheMovies = function (query) {
