@@ -8,6 +8,7 @@ import PopularMovies from './pages/PopularMovies';
 import TopRatedMovies from './pages/TopRatedMovies';
 import TVShows from './pages/TVShows';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -42,7 +43,7 @@ function App() {
         }
         )
         // .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
-          
+
         //   await savedMovies.forEach(async movie => {
 
         //     if (friends.length > 0) {
@@ -93,6 +94,7 @@ function App() {
           </Switch>
         </UserInfoContext.Provider>
       </>
+      <Footer />
     </Router>
   );
 }
