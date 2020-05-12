@@ -48,6 +48,7 @@ function NewMovies() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
+  
 
   return (
     <>
@@ -69,12 +70,13 @@ function NewMovies() {
                   <h6 className='small'>Popularity: {movie.popularity}</h6>
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
+                  
                   {userData.username && (
                     <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
+                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
                         ? 'In Watchlist!'
                         : 'Add to Watchlist!'}
                     </Button>

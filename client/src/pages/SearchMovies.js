@@ -33,40 +33,41 @@ function SearchMovies(props) {
     const [rating, setRating] = useState(props.rating);
     const [hover, setHover] = useState(null)
     return (
-      <div>
-        {[...Array(5)].map((star, i) => {
-          const rateValue = i + 1;
+       <div>
+                {[...Array(5)].map((star, i) => {
+                    const rateValue = i + 1;
 
-          return (
-            <label>
-              <input type='radio'
-                name='rating'
-                value={rateValue}
-                // onClick={() =>  setRating(rateValue)}
-                onClick={() => props.handleRateMovie(props.id, rateValue)}
-              />
-              <FaStar className='star'
-                color={rateValue <= (hover || rating) ? "yellow" : "gray"}
-                onMouseEnter={() => setHover(rateValue)}
-                onMouseLeave={() => setHover(null)}
-              />
+                    return (
+                        <label>
+                            <input type='radio'
+                                name='rating'
+                                value={rateValue}
+                                // onClick={() =>  setRating(rateValue)}
+                                onClick={() =>  props.handleRateMovie(props.id, rateValue)}
+                        />
+                            <FaStar className='star'
+                                color={rateValue <= (hover || rating) ? "yellow" : "gray"}
+                                onMouseEnter={() => setHover(rateValue)}
+                                onMouseLeave={() => setHover(null)}
+                            />
 
-            </label>
-          )
-        })}
+                        </label>
+                    )
+                })}
 
-      </div>
+            </div>
+      
     )
   }
 
   // create method to search for movies and set state on form submit
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault();
 
-    if (!searchInput) {
-      return false;
-    }
-  }
+  //   if (!searchInput) {
+  //     return false;
+  //   }
+  // }
 
 
   function searchFor(title) {
@@ -98,27 +99,6 @@ function SearchMovies(props) {
   };
 
 
-  //   searchTheMovies(searchInput)
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       const movieData = data.results.map((movie) => ({
-  //         popularity: movie.popularity,
-  //         poster_path: movie.poster_path,
-  //         id: movie.id,
-  //         title: movie.title,
-  //         vote_average: movie.vote_average,
-  //         overview: movie.overview.substring(0, 100).concat("..."),
-  //         release_date: movie.release_date,
-  //         genre_ids: movie.genre_ids,
-  //         rating:0,
-  //       }));
-  //       console.log(movieData);
-
-  //       return setSearchedMovies(movieData);
-  //     })
-  //     .then(() => setSearchInput(''))
-  //     .catch((err) => console.log(err));
-  // };
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...searchedMovies];
@@ -138,6 +118,7 @@ function SearchMovies(props) {
     });
     setSearchedMovies(updatedSearchMovies);
   }
+  
 
   // create function to handle saving a movie to our database
   const handleSaveMovie = (id) => {
@@ -178,9 +159,16 @@ function SearchMovies(props) {
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   <Card.Text>{movie.overview}</Card.Text>
 
-                  <Star rating={searchedMovies.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+                  <Star rating={movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+                  
+                  {/* <Star rating = {searchedMovies.rating} movieId = {searchedMovies.movieId}  handleRateMovie = {handleRateMovie}/> */}
 
                   {userData.username && (
+                  <div>
+
+                  {/* <Star rating={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id) ?
+                    userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id).rating :
+                    movie.rating} id={movie.id} handleRateMovie={handleRateMovie} /> */}
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
                       className='btn-block btn-info'
@@ -189,6 +177,7 @@ function SearchMovies(props) {
                         ? 'In Watchlist!'
                         : 'Add to Watchlist!'}
                     </Button>
+                    </div>
                   )}
                 </Card.Body>
               </Card>
