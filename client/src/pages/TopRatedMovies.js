@@ -50,8 +50,8 @@ function TopRatedMovies() {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...topRatedMoviesResult];
-    console.log(updatedSearchMovies);
-    console.log(topRatedMoviesResult);
+    // console.log(updatedSearchMovies);
+    // console.log(topRatedMoviesResult);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
@@ -65,7 +65,7 @@ function TopRatedMovies() {
   useEffect(() => {
     topRatedTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,
@@ -85,7 +85,7 @@ function TopRatedMovies() {
   const handleSaveMovie = (id) => {
     // find the movie in `TopRatedMovies` state by the matching id
     const movieToSave = topRatedMoviesResult.find((movie) => movie.id === id);
-    console.log(movieToSave);
+    //console.log(movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 

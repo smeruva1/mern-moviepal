@@ -48,11 +48,11 @@ function AppNavbar() {
               <table>
                 <tr>
                   <td>
-                    <Nav.Link as={Link} to='/' className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" activeClassName="navbar__link--active" >
                       Home
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/new' className="navbar__link"  activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link"  activeClassName="navbar__link--active">
                       New Movies
               </Nav.Link>
                   </td><td>
