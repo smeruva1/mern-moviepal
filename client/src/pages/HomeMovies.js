@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import {Container, Button, Card, CardColumns } from 'react-bootstrap';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
@@ -72,12 +72,12 @@ function HomeMovies() {
     // find the movie in `HomeMovies` state by the matching id
     let movieToSave = [];
 
-    if (category == "popular") {
-      movieToSave = home5PopularMoviesResult.find((movie) => movie.id == id);
-    } else if (category == "toprated") {
-      movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id == id);
-    } else if (category == "New") {
-      movieToSave = home5NewMoviesResult.find((movie) => movie.id == id);
+    if (category === "popular") {
+      const movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
+    } else if (category === "toprated") {
+      const movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
+    } else if (category === "New") {
+      const movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
     }
 
     // console.log(movieToSave);
@@ -99,11 +99,11 @@ function HomeMovies() {
   return (
     <>
       <Container className="homeContainer">
-        {/* <Jumbotron fluid className='text-light bg-dark'> */}
+       
         <Container>
           <h1>Home</h1>
         </Container>
-        {/* </Jumbotron> */}
+       
 
         <Container>
           <h2>{home5PopularMoviesResult.length ? `Viewing Popular ${home5PopularMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
@@ -119,10 +119,10 @@ function HomeMovies() {
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
                       <Button
-                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveMovie(movie.id, "popular")}>
-                        {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                        {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
                           ? 'In Watchlist!'
                           : 'Add to Watchlist!'}
                       </Button>
@@ -149,10 +149,10 @@ function HomeMovies() {
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
                       <Button
-                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveMovie(movie.id, "popular")}>
-                        {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                        {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
                           ? 'In Watchlist!'
                           : 'Add to Watchlist!'}
                       </Button>
@@ -179,10 +179,10 @@ function HomeMovies() {
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
                       <Button
-                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
+                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveMovie(movie.id, "popular")}>
-                        {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
+                        {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
                           ? 'In Watchlist!'
                           : 'Add to Watchlist!'}
                       </Button>

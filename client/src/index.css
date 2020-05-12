@@ -9,14 +9,6 @@ body {
     color: #fff;
     border-color: #F49F1C; /*set the color you want here*/
 }
-.submitBtn:hover {
-  font-family: 'Baloo 2', cursive;
-  background-color: #2F2F4F;
-  color: #fff;
-  border-color: #2F2F4F; /*set the color you want here*/
-}
-
-
 h1,
 h2,
 h3,
@@ -40,6 +32,20 @@ h6 {
   orphans: 1;
   widows: 1;
 
+}
+.image{
+  margin-left: 30px;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border: 1px solid #e3e3e3;
+  border-radius: 30%;
+  overflow: hidden;
+  margin-top: 30px;
+  width: calc(((100vw - 260px - 80px - 64px) / 2));
 }
 
 .btn-info.disabled, .btn-info:disabled {
@@ -97,4 +103,61 @@ input[type= "radio"]{
  .logo {
   border-radius: 20%;
   /* vertical-align:middle;  */
+ }
+ 
+.card-img, .card-img-bottom, .card-img-top {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 10%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 7%;
+}
+
+.h5, h5 {
+  font-size: 8;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  /* margin-bottom: .5rem; */
+  font-weight: 200;
+  line-height: 1.2;
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: orangered;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius:5%;
+  outline: 0;
+}
+
+.form-control {
+  display: block;
+  width: 50%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
