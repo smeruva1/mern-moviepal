@@ -30,7 +30,7 @@ function MovieDetails(props) {
 
         API.searchMovieByID(params.id)
             .then(({ data }) => {
-                console.log(data);
+                //console.log(data);
             
         return setMovieinfo(data);
     })
@@ -83,8 +83,8 @@ const Star = (props) => {
 
 const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...Movieinfo];
-    console.log(updatedSearchMovies);
-    console.log(Movieinfo);
+    // console.log(updatedSearchMovies);
+    // console.log(Movieinfo);
     updatedSearchMovies.forEach(movie => {
         if (movie.id === id) {
             movie.rating = rating;

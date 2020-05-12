@@ -25,8 +25,8 @@ export const loginUser = function (userData) {
 
 // save movie data for a logged in user
 export const saveMovie = function (movieData, token) {
-  console.log(movieData);
-  console.log(token);
+  // console.log(movieData);
+  // console.log(token);
 
   return axios.put('/api/users', movieData, { headers: { authorization: `Bearer ${token}` } });
 };
@@ -39,20 +39,13 @@ export const getMovieRating = function (movieid, users, token) {
   return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
 }
 
-
 export const getMovieDetails = function (movieId) {
-  console.log("In API.js about to perform axios.get: " + movieId);
-  
-//*********TESTING ****** */
-  return axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&source_id=`+movieId,{headers: {
+  //console.log("In API.js about to perform axios.get: " + movieId);
+    return axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&source_id=`+movieId,{headers: {
     "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-    "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde" 
-  }});
-        // console.log(utellydata);
-        // return (utellydata);
-        // return axios.get(`/api/users/details/${movieId}`,{ headers: { authorization: `Bearer ${token}` } });
+    "x-rapidapi-key": process.env.REACT_APP_UTELLY
+  }});        
 };
-
 
 // make a search to The movie DB api
 export const searchMovieByID = function (query) {

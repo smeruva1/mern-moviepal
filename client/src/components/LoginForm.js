@@ -31,7 +31,7 @@ function LoginForm({ handleModalClose }) {
 
     loginUser(userFormData)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         AuthService.login(data.token);
         userData.getUserData();
         handleModalClose();
