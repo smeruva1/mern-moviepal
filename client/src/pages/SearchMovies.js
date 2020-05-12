@@ -156,9 +156,10 @@ function SearchMovies() {
 
                   {userData.username && (
                    <div>
+
                    <Star rating = {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)? 
                       userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id).rating :
-                      searchedMovies.rating} id = {movie.id}  handleRateMovie = {handleRateMovie}/> 
+                      movie.rating} id = {movie.id}  handleRateMovie = {handleRateMovie}/> 
                     
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}

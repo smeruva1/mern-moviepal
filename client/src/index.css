@@ -94,3 +94,7 @@ input[type= "radio"]{
     font-weight: bold;
  }
  
+ .logo {
+  border-radius: 20%;
+  /* vertical-align:middle;  */
+}

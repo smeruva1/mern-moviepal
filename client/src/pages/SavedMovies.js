@@ -50,7 +50,7 @@ function SavedMovies() {
                   <h6 className='small netRating'>Vote Average: {movie.vote_average}</h6>
                   <h6 className='small fandfRating'>Family Average: {movie.familyRating}</h6>
                   <h6 className='small fandfRating'>Friends Average: {movie.friendRating}</h6>
-                  <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text>
+                  {/* <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text> */}
                   {userData.username && (
                     <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
                       Delete this Movie!
