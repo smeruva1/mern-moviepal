@@ -11,7 +11,7 @@ h4,
 h5,
 h6 {
   font-family: 'Baloo 2', cursive;
-  color: white;
+  /* color: white; */
 }
 
 .small {
@@ -166,4 +166,42 @@ input[type= "radio"]{
 
 .footerColor {
   background-color: #2F2F4F;  
+}
+
+.login-signup-btn {
+  opacity: 0.75;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: white;
+  /* background-color: #eceff1; */
+}
+
+.navbar__link {
+  margin: 1em;
+  /* font-size: 2em; */
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  text-decoration: none;
+  /* letter-spacing: .3em;
+  text-indent: .3em; */
+  color: white;
+  /* border-bottom: 3px solid transparent; */
+}
+
+.navbar__link:hover {
+  transform: translateY(-2px);
+}
+
+.navbar__link--active {
+  /* border-bottom: 3px solid #29b6f6; */
+  font-weight: bold;
+  text-decoration: underline;
+  border-bottom-color: white;
+  /* transition: border-bottom .5s ease-in-out; */
 }

@@ -2,6 +2,8 @@
 const { User } = require('../models');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
+const axios = require('axios');
+require('dotenv').config();
 
 
 module.exports = {
@@ -12,7 +14,41 @@ module.exports = {
     return res.json(users);
   },
 
+  
+  async getMovieDetails(req, res) {
+  
+    // async getMovieDetails({ user = null, params }, res) {
+    //let movie = await User.savedMovies.findOne({id:req.params.id});
 
+    //   id: { $in: params.users },
+    //   "savedMovies.id": params.movieid
+    // });
+
+    // const userList = await User.find({
+    //   _id: { $in: params.users.split(',') },
+    //   "savedMovies.id": params.movieid
+    // });
+
+    // let movie = await Movie.findOne({id:req.params.id});
+    console.log("inside controller");
+    
+    let utellydata = await axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&
+    source_id=481848`,{headers: {
+        "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+        "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde"
+    
+    //     let utellydata = await axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=US&source=tmdb&
+    // source_id=481848${req.params.id}`,{headers: {
+    //     "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+    //     "x-rapidapi-key": "9e12b195f8msh211bda4699166cbp16fb57jsn1041353b0dde"
+        // "x-rapidapi-key": process.env.REACT_APP_UTELLY
+        
+    }})
+    //console.log(movie);
+    console.log(utellydata.data);
+    // return res.json({movie, utellydata: utellydata.data});
+    return res.json({utellydata: utellydata.data});
+},
 
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
@@ -30,6 +66,7 @@ module.exports = {
 
   // get a movie rating for a user
   async getMovieRating({ user = null, params }, res) {
+    
     const userList = await User.find({
       _id: { $in: params.users.split(',') },
       "savedMovies.id": params.movieid
@@ -39,7 +76,7 @@ module.exports = {
 
     userList.forEach(user => {
       user.savedMovies.forEach(movie => {
-        if (movie.id = params.movieid) {
+        if (movie.id === params.movieid) {
           totalRating += movie.rating;
         }
       }
@@ -52,7 +89,6 @@ module.exports = {
 
      res.json({ rating: userList.length > 0? totalRating / userList.length : 0 });
   },
-
 
 
   // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)

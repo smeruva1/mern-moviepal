@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
+import MovieDetails from './pages/MovieDetails';
 import HomeMovies from './pages/HomeMovies';
 import NewMovies from './pages/NewMovies';
 import PopularMovies from './pages/PopularMovies';
@@ -39,34 +40,40 @@ function App() {
 
           setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
 
-          // return { username, email, savedMovies, friends, family, movieCount};
+          return { username, email, savedMovies, friends, family, movieCount};
         }
         )
-        // .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
+        .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
+          
+          console.log(username);
+          console.log(savedMovies);
+          console.log(friends);
+          console.log(movieCount);
 
-        //   await savedMovies.forEach(async movie => {
+          await savedMovies.forEach(async movie => {
 
-        //     if (friends.length > 0) {
-        //       await API.getMovieRating(movie.id, friends, token)
-        //         .then(({ data }) => {
-        //           movie.friendRating = data.rating;
-        //         })
-        //         .catch((err) => console.log(err));
-        //     }
+            if (friends.length > 0) {
+              await API.getMovieRating(movie.id, friends, token)
+                .then(({ data }) => {
+                  console.log(data);
+                  movie.friendRating = data.rating;
+                })
+                .catch((err) => console.log(err));
+            }
 
-        //     if (family.length > 0) {
-        //       await API.getMovieRating(movie.id, family, token)
-        //         .then(({ data }) => {
-        //           movie.familyRating = data.rating;
-        //         })
-        //         .catch((err) => console.log(err));
-        //     }
-        //   })
+            if (family.length > 0) {
+              await API.getMovieRating(movie.id, family, token)
+                .then(({ data }) => {
+                  movie.familyRating = data.rating;
+                })
+                .catch((err) => console.log(err));
+            }
+          })
 
-        //   //setUserInfo({username, email, savedMovies, friends, family, movieCount })
-        //   setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
-        // }
-        // )
+          //setUserInfo({username, email, savedMovies, friends, family, movieCount })
+          setUserInfo({ ...userInfo, username, email, savedMovies, friends, family, movieCount });
+        }
+        )
         .catch((err) => console.log(err));
     },
   });
@@ -90,6 +97,7 @@ function App() {
             <Route exact path='/toprated' component={TopRatedMovies} />
             <Route exact path='/tvshows' component={TVShows} />
             <Route exact path='/saved' component={SavedMovies} />
+            <Route exact path='/moviedetails/:id' component={MovieDetails} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

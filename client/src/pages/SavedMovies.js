@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
@@ -93,7 +94,12 @@ function SavedMovies() {
           {userData.savedMovies.map((movie) => {
             return (
               <Card key={movie.id} border='dark'>
-                {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
+                                
+                {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src = {`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link>  : null}
+            
+                {/*{movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
+                 */}
+
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <h6 className='small netRating'>Popularity: {movie.popularity}</h6>
