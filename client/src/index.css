@@ -1,6 +1,13 @@
-body, .submitBtn {
+body {
   background-color: #F49F1C;
    font-family: 'Baloo 2', cursive;
+   }
+
+   .submitBtn, .btn-success {
+    font-family: 'Baloo 2', cursive;
+    background-color: #F49F1C;
+    color: #fff;
+    border-color: #F49F1C; /*set the color you want here*/
 }
 h1,
 h2,
@@ -9,7 +16,6 @@ h4,
 h5,
 h6 {
   font-family: 'Baloo 2', cursive;
-  color: white;
 }
 
 .small {
@@ -61,17 +67,23 @@ h6 {
   margin-left: auto;
 }
 
-.bg-navy {
-  background: #2F2F4F;  
+.color-nav {
+  background-color: #2F2F4F;  
 }
 
 .bg-dark {
   background-color:#2F2F4F;
   color: white;
 }
-.navbar-dark .navbar-nav .nav-link {
-  color:white;
+
+.navbar-brand{
+color: white;
 }
+
+a{
+  color: white;
+  }
+  
 .homeContainer {
   zoom: 0.75;
 }
@@ -79,7 +91,20 @@ h6 {
 input[type= "radio"]{
   display: none
 }
-
+.netRating {
+  color: #F49F1C;
+ }
+ 
+ .fandfRating {  
+    color: #2F2F4F !important;
+    font-weight: bold;
+ }
+ 
+ .logo {
+  border-radius: 20%;
+  /* vertical-align:middle;  */
+ }
+ 
 .card-img, .card-img-bottom, .card-img-top {
   -ms-flex-negative: 0;
   flex-shrink: 0;

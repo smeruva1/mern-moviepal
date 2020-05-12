@@ -12,8 +12,7 @@ const movieSchema = new Schema({
   //save movie id from The movie DB
   id: {
     type: String,
-    required: true,
-    // unique: true,
+    required: true,    
   },
   title: {
     type: String,
@@ -34,7 +33,7 @@ const movieSchema = new Schema({
     },
   ],
     rating: {
-      type: String,
+      type: Number,
       // required: true,
   },
   });
