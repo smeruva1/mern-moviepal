@@ -1,14 +1,12 @@
 body {
-  background-color: #F49F1C;
-   font-family: 'Baloo 2', cursive;
+  /* background-color: #F49F1C;
+   font-family: 'Baloo 2', cursive; */
 
-/* background: #c31432;  /* fallback for old browsers */
-/* background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-/* background: linear-gradient(to right, #240b36, #c31432); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+background: #c31432;  
+background: -webkit-linear-gradient(to right, #240b36, #c31432); 
+background: linear-gradient(to right, #240b36, #c31432); 
 
-   }
-
- 
+}
 
 
 h1,
@@ -148,11 +146,7 @@ input[type= "radio"]{
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-<<<<<<< HEAD
-  background:#c31432; 
-=======
   background-color: #F49F1C;;
->>>>>>> c5795b7bb1b564ecc97033fb21ee0f7a62816d1c
   background-clip: padding-box;
   border: 1px solid #2F2F4F;;
   border-radius:5%;
@@ -173,4 +167,9 @@ input[type= "radio"]{
   border: 1px solid #ced4da;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+h6 {
+  font-family: 'Baloo 2', cursive;
+  color: blue;
 }

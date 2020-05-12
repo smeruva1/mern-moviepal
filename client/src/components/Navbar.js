@@ -77,7 +77,7 @@ function AppNavbar() {
           </Col>
         
       </Navbar>
-      </Container>
+      
       {/* set modal data up */}
       <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}

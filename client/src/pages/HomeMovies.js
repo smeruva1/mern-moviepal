@@ -263,17 +263,6 @@ function HomeMovies() {
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
-<<<<<<< HEAD
-                    <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
-                        ? 'In Watchlist!'
-                        : 'Add to Watchlist!'}
-                    </Button>
-                  )}
-=======
                       <div>
 
                         <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
@@ -290,7 +279,6 @@ function HomeMovies() {
                         </Button>
                       </div>
                     )}
->>>>>>> c5795b7bb1b564ecc97033fb21ee0f7a62816d1c
                   </Card.Body>
                 </Card>
               );
