@@ -8,9 +8,7 @@ body {
 
    }
 
-   .bg-dark {
-    /* background-color: #343a40!important; */
-}
+ 
 
 
 h1,
@@ -20,8 +18,7 @@ h4,
 h5,
 h6 {
   font-family: 'Baloo 2', cursive;
-  color: #ced4da;
-
+  color: white;
 }
 
 .small {
@@ -139,15 +136,25 @@ input[type= "radio"]{
   font-weight: 200;
   line-height: 1.2;
 }
+.modal-header{
+  background-color: #2F2F4F;
+  border-radius:5%;
+  border: 1px solid #2F2F4F;;
+  }
+
 .modal-content {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
+<<<<<<< HEAD
   background:#c31432; 
+=======
+  background-color: #F49F1C;;
+>>>>>>> c5795b7bb1b564ecc97033fb21ee0f7a62816d1c
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid #2F2F4F;;
   border-radius:5%;
   outline: 0;
 }

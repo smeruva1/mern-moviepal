@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import {Container, Button, Card, CardColumns } from 'react-bootstrap';
-
+import { Container, Button, Card, CardColumns } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMovie, popularTheMovies, newTheMovies, topRatedTheMovies } from '../utils/API';
@@ -12,6 +12,76 @@ function HomeMovies() {
   const [home5NewMoviesResult, setHome5NewMoviesResult] = useState([]);
 
   const userData = useContext(UserInfoContext);
+
+  const Star = (props) => {
+
+    const [rating, setRating] = useState(props.rating);
+    const [hover, setHover] = useState(null)
+    return (
+      <div>
+        {[...Array(5)].map((star, i) => {
+          const rateValue = i + 1;
+
+          return (
+            <label>
+              <input type='radio'
+                name='rating'
+                value={rateValue}
+                //onClick={() =>  setRating(rateValue)}
+                onClick={() => {
+                  // console.log(rateValue, props.id, rating);
+                  props.handleRateMovie(props.id, rateValue);
+                  // setRating(rateValue);
+                }
+                }
+              />
+              <FaStar className='star'
+                color={rateValue <= (hover || rating) ? "yellow" : "gray"}
+                onMouseEnter={() => setHover(rateValue)}
+                onMouseLeave={() => setHover(null)}
+              />
+
+            </label>
+          )
+        })}
+
+      </div>
+    )
+  }
+
+  const handleRateMovie = (id, rating, category) => {
+
+    let movieToSave = [];
+
+    if (category === "popular") {
+      movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
+    } else if (category === "toprated") {
+      movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
+    } else if (category === "new") {
+      movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
+    }
+
+
+    const updatedSearchMovies = [...movieToSave];
+    console.log(updatedSearchMovies);
+    console.log(movieToSave);
+
+    updatedSearchMovies.forEach(movie => {
+      if (movie.id === id) {
+        movie.rating = rating;
+      }
+    });
+
+    if (category === "popular") {
+      setHome5PopularMoviesResult(updatedSearchMovies);
+    } else if (category === "toprated") {
+      setHome5TopRatedMoviesResult(updatedSearchMovies);
+    } else if (category === "new") {
+      setHome5NewMoviesResult(updatedSearchMovies);
+    }
+
+
+  }
 
   useEffect(() => {
     popularTheMovies()
@@ -73,12 +143,13 @@ function HomeMovies() {
     let movieToSave = [];
 
     if (category === "popular") {
-      const movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
+      movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
     } else if (category === "toprated") {
-      const movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
-    } else if (category === "New") {
-      const movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
+      movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
+    } else if (category === "new") {
+      movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
     }
+
 
     // console.log(movieToSave);
     // get token
@@ -88,8 +159,8 @@ function HomeMovies() {
       return false;
     }
 
-
     // send the movies data to our api
+
 
     saveMovie(movieToSave, token)
       .then(() => userData.getUserData())
@@ -99,11 +170,11 @@ function HomeMovies() {
   return (
     <>
       <Container className="homeContainer">
-       
+
         <Container>
           <h1>Home</h1>
         </Container>
-       
+
 
         <Container>
           <h2>{home5PopularMoviesResult.length ? `Viewing Popular ${home5PopularMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
@@ -118,15 +189,22 @@ function HomeMovies() {
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
-                    <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
-                        ? 'In Watchlist!'
-                        : 'Add to Watchlist!'}
-                    </Button>
-                  )}
+                      <div>
+
+                        <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                          userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="popular" />
+
+                        <Button
+                          disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                          className='btn-block btn-info'
+                          onClick={() => handleSaveMovie(movie.id, "popular")}>
+                          {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
+                            ? 'In Watchlist!'
+                            : 'Add to Watchlist!'}
+                        </Button>
+                      </div>
+                    )}
                   </Card.Body>
                 </Card>
               );
@@ -148,14 +226,21 @@ function HomeMovies() {
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
-                      <Button
-                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
-                        className='btn-block btn-info'
-                        onClick={() => handleSaveMovie(movie.id, "popular")}>
-                        {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
-                          ? 'In Watchlist!'
-                          : 'Add to Watchlist!'}
-                      </Button>
+                      <div>
+
+                        <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                          userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="toprated" />
+
+                        <Button
+                          disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                          className='btn-block btn-info'
+                          onClick={() => handleSaveMovie(movie.id, "toprated")}>
+                          {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
+                            ? 'In Watchlist!'
+                            : 'Add to Watchlist!'}
+                        </Button>
+                      </div>
                     )}
                   </Card.Body>
                 </Card>
@@ -178,6 +263,7 @@ function HomeMovies() {
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
                     {userData.username && (
+<<<<<<< HEAD
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
                       className='btn-block btn-info'
@@ -187,6 +273,24 @@ function HomeMovies() {
                         : 'Add to Watchlist!'}
                     </Button>
                   )}
+=======
+                      <div>
+
+                        <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                          userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="toprated" />
+
+                        <Button
+                          disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                          className='btn-block btn-info'
+                          onClick={() => handleSaveMovie(movie.id, "new")}>
+                          {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
+                            ? 'In Watchlist!'
+                            : 'Add to Watchlist!'}
+                        </Button>
+                      </div>
+                    )}
+>>>>>>> c5795b7bb1b564ecc97033fb21ee0f7a62816d1c
                   </Card.Body>
                 </Card>
               );

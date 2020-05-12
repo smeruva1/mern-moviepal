@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
+import { FaStar } from 'react-icons/fa';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMovie, popularTheMovies } from '../utils/API';
@@ -10,6 +10,55 @@ function PopularMovies() {
   const [popularMoviesResult, setPopularMoviesResult] = useState([]);
 
   const userData = useContext(UserInfoContext);
+
+  const Star = (props) => {
+
+    const [rating, setRating] = useState(props.rating);
+    const [hover, setHover] = useState(null)
+    return (
+      <div>
+        {[...Array(5)].map((star, i) => {
+          const rateValue = i + 1;
+
+          return (
+            <label>
+              <input type='radio'
+                name='rating'
+                value={rateValue}
+                //onClick={() =>  setRating(rateValue)}
+                onClick={() => {
+                  // console.log(rateValue, props.id, rating);
+                  props.handleRateMovie(props.id, rateValue);
+                  // setRating(rateValue);
+                }
+                }
+              />
+              <FaStar className='star'
+                color={rateValue <= (hover || rating) ? "yellow" : "gray"}
+                onMouseEnter={() => setHover(rateValue)}
+                onMouseLeave={() => setHover(null)}
+              />
+
+            </label>
+          )
+        })}
+
+      </div>
+    )
+  }
+
+  const handleRateMovie = (id, rating) => {
+    const updatedSearchMovies = [...popularMoviesResult];
+    console.log(updatedSearchMovies);
+    console.log(popularMoviesResult);
+
+    updatedSearchMovies.forEach(movie => {
+      if (movie.id === id) {
+        movie.rating = rating;
+      }
+    });
+    setPopularMoviesResult(updatedSearchMovies);
+  }
 
   useEffect(() => {
     popularTheMovies()
@@ -70,14 +119,21 @@ function PopularMovies() {
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   {/* <Card.Text>{movie.overview}</Card.Text> */}
                   {userData.username && (
-                    <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.id)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.id == movie.id)
-                        ? 'In Watchlist!'
-                        : 'Add to Watchlist!'}
-                    </Button>
+                    <div>
+
+                      <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                        userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                        movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+
+                      <Button
+                        disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
+                        className='btn-block btn-info'
+                        onClick={() => handleSaveMovie(movie.id)}>
+                        {userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)
+                          ? 'In Watchlist!'
+                          : 'Add to Watchlist!'}
+                      </Button>
+                    </div>
                   )}
                 </Card.Body>
               </Card>

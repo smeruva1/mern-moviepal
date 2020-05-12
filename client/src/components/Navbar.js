@@ -16,14 +16,13 @@ function AppNavbar() {
 
   return (
     <>
-    <Container fluid>
-      <Navbar bg='dark' variant='active' expand='lg'>
+      <Navbar  className="color-nav" variant="white" expand='lg'>
         {/* <Navbar className="navbarbg" expand='lg'> */}
         {/* <Container fluid> */}
           <Col xs={12} md={10}>
             <Navbar.Brand as={Link} to='/'>
               <img
-                src="./moviePal1.jpg"
+                src="./MoviePal.PNG"
                 // width="90"
                 height="50"
                 className="d-inline-block align-top logo"
