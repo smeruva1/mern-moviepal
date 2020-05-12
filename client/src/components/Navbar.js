@@ -16,68 +16,100 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar  className="color-nav" variant="white" expand='lg'>
+      <Navbar className="color-nav" variant="white" expand='lg'>
         {/* <Navbar className="navbarbg" expand='lg'> */}
-        {/* <Container fluid> */}
-          <Col xs={12} md={10}>
-            <Navbar.Brand as={Link} to='/'>
-              <img
-                src="./MoviePal.PNG"
-                // width="90"
-                height="50"
-                className="d-inline-block align-top logo"
-                alt="moviepal logo"
-              />{' '} Enrich your movie list wisely
-            </Navbar.Brand>
-            {/* <Navbar.Toggle aria-controls='navbar' /> */}
-            <Navbar.Collapse id='navbar'>
-              <Nav className='ml-auto'>
-                <Nav.Link as={Link} to='/'>
-                  Home
+        <Container fluid>
+          {/* <Col xs={12} md={3}> */}
+
+          <Navbar.Brand as={Link} to='/'>
+            <table>
+              <tr>
+                <td>  <img
+                  src="./MoviePal.PNG"
+                  // width="90"
+                  height="50"
+                  className="d-inline-block align-top logo"
+                  alt="moviepal logo"
+                /></td>
+                <td>
+                  {' '}
+                </td>
+                <td>
+                  <span>Enrich your movie list wisely</span>
+                </td>
+              </tr>
+            </table>
+          </Navbar.Brand>
+          {/* <Navbar.Toggle aria-controls='navbar' /> */}
+          {/* <Col xs={12} md={3}> */}
+
+          <Navbar.Collapse id='navbar'>
+            <Nav className='ml-auto'>
+              <table>
+                <tr>
+                  <td>
+                    <Nav.Link as={Link} to='/'>
+                      Home
               </Nav.Link>
-                <Nav.Link as={Link} to='/new'>
-                  New Movies
+                  </td><td>
+                    <Nav.Link as={Link} to='/new'>
+                      New Movies
               </Nav.Link>
-                <Nav.Link as={Link} to='/popular'>
-                  Popular Movies
+                  </td><td>
+                    <Nav.Link as={Link} to='/popular'>
+                      Popular Movies
               </Nav.Link>
-                <Nav.Link as={Link} to='/toprated'>
-                  Top Rated Movies
+                  </td><td>
+                    <Nav.Link as={Link} to='/toprated'>
+                      Top Rated Movies
               </Nav.Link>
-                <Nav.Link as={Link} to='/tvshows'>
-                  TV Shows
+                  </td><td>
+                    <Nav.Link as={Link} to='/tvshows'>
+                      TV Shows
               </Nav.Link>
-                {/* if user is logged in show saved movies and logout */}
-                {username ? (
-                  <>
-                    <Nav.Link as={Link} to='/saved'>
-                      See {username}'s Watchlist
-                  </Nav.Link>
-                    <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
-                  </>
-                ) : (
-                    <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                  )}
-              </Nav>
-            </Navbar.Collapse>
-          </Col><Col xs={12} md={4}>
-            <Form.Control
-              id="searchTextField"
-              value={searchInput}
-              onKeyPress={(event) => {
-                if (event.charCode === 13) {
-                  history.push(`/search?searchText=${searchInput}`)
-                  setSearchInput('')
-                }
-              }}
-              onChange={(event) => setSearchInput(event.target.value)}
-              type='text'
-              placeholder='Search for a Movie'
-            />
-          </Col>
-        
+                  </td><td>
+                    <Form.Control
+                      id="searchTextField"
+                      value={searchInput}
+                      onKeyPress={(event) => {
+                        if (event.charCode === 13) {
+                          history.push(`/search?searchText=${searchInput}`)
+                          setSearchInput('')
+                        }
+                      }}
+                      onChange={(event) => setSearchInput(event.target.value)}
+                      type='text'
+                      placeholder='Search for a Movie'
+                    />
+                  </td>
+                    {/* if user is logged in show saved movies and logout */}
+                    {username ? (
+                      <>
+                      <td>
+                        <Nav.Link as={Link} to='/saved'>
+                          See {username}'s Watchlist
+                  </Nav.Link>                  
+                  </td><td>
+                        <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
+                        </td>
+                      </>
+                    ) : (
+                      <td>
+                        <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                        </td>
+                      )}                  
+                </tr>
+              </table>
+            </Nav>
+
+          </Navbar.Collapse>
+          {/* </Col><Col xs={12} md={3}> */}
+
+          {/* </Col> */}
+        </Container>
       </Navbar>
-      
+
+
       {/* set modal data up */}
       <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}

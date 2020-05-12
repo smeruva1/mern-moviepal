@@ -86,7 +86,7 @@ a{
   }
   
 .homeContainer {
-  zoom: 0.75;
+  zoom: .8;
 }
 
 input[type= "radio"]{
@@ -155,7 +155,7 @@ input[type= "radio"]{
 
 .form-control {
   display: block;
-  width: 50%;
+  /* width: 50%; */
   height: calc(1.5em + .75rem + 2px);
   padding: .375rem .75rem;
   font-size: 1rem;
@@ -169,7 +169,6 @@ input[type= "radio"]{
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-h6 {
-  font-family: 'Baloo 2', cursive;
-  color: blue;
+.footerColor {
+  background-color: #2F2F4F;  
 }
