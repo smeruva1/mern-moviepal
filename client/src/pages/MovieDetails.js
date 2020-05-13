@@ -111,7 +111,7 @@ return (
                                 <div>
 
                                     <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === Movieinfo.id) ?
-                                        userData.savedMovies?.some((savMovie) => savMovie.id === Movieinfo.id).rating :
+                                        userData.savedMovies?.find((savMovie) => savMovie.id === Movieinfo.id).rating :
                                         Movieinfo.rating} id={Movieinfo.id} handleRateMovie={handleRateMovie} />
 
                                     {/* <Button

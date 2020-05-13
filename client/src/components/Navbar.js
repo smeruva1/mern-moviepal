@@ -52,19 +52,19 @@ function AppNavbar() {
                       Home
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link"  activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link" activeClassName="navbar__link--active">
                       New Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/popular' className="navbar__link"  activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/popular' className="navbar__link" activeClassName="navbar__link--active">
                       Popular Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/toprated'  className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/toprated' className="navbar__link" activeClassName="navbar__link--active">
                       Top Rated Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/tvshows'  className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/tvshows' className="navbar__link" activeClassName="navbar__link--active">
                       TV Shows
               </Nav.Link>
                   </td><td>
@@ -82,22 +82,22 @@ function AppNavbar() {
                       placeholder='Search for a Movie'
                     />
                   </td>
-                    {/* if user is logged in show saved movies and logout */}
-                    {username ? (
-                      <>
+                  {/* if user is logged in show saved movies and logout */}
+                  {username ? (
+                    <>
                       <td>
-                        <Nav.Link as={Link} to='/saved'  className="navbar__link" activeClassName="navbar__link--active">
+                        <Nav.Link as={Link} to='/saved' className="navbar__link" activeClassName="navbar__link--active">
                           See {username}'s Watchlist
-                  </Nav.Link>                  
-                  </td><td>
-                        <Nav.Link onClick={AuthService.logout}  className="navbar__link" activeClassName="navbar__link--active">Logout</Nav.Link>
-                        </td>
-                      </>
-                    ) : (
+                  </Nav.Link>
+                      </td><td>
+                        <Nav.Link onClick={AuthService.logout} className="navbar__link" activeClassName="navbar__link--active">Logout</Nav.Link>
+                      </td>
+                    </>
+                  ) : (
                       <td>
                         <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                        </td>
-                      )}                  
+                      </td>
+                    )}
                 </tr>
               </table>
             </Nav>

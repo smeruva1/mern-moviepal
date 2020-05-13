@@ -11,7 +11,7 @@ import AuthService from '../utils/auth';
 function SavedMovies() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  
+
   const Star = (props) => {
 
     const [rating, setRating] = useState(props.rating);
@@ -50,8 +50,8 @@ function SavedMovies() {
 
   const handleRateMovie = (id, rating) => {
     const updatedSearchMovies = [...userData.savedMovies];
-    console.log(updatedSearchMovies);
-    console.log(userData.savedMovies);
+    // console.log(updatedSearchMovies);
+    // console.log(userData.savedMovies);
 
     updatedSearchMovies.forEach(movie => {
       if (movie.id === id) {
@@ -94,9 +94,9 @@ function SavedMovies() {
           {userData.savedMovies.map((movie) => {
             return (
               <Card key={movie.id} border='dark'>
-                                
-                {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src = {`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link>  : null}
-            
+
+                {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link> : null}
+
                 {/*{movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                  */}
 
@@ -108,9 +108,9 @@ function SavedMovies() {
                   <h6 className='small fandfRating'>Friends Average: {movie.friendRating}</h6>
                   {/* <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text> */}
 
-                      <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
-                        userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
-                        movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+                  <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                    userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
+                    movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                   {userData.username && (
                     <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
