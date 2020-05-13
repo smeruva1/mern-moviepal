@@ -99,8 +99,10 @@ const Movierow = <table>
                 <img src={`http://image.tmdb.org/t/p/w185${Movieinfo.poster_path}`} alt={`the cover for ${Movieinfo.title}`} variant='top' />
             </td>
             <td className = "table-container">
-            {Movieinfo.title}
+            <strong>{Movieinfo.title}</strong> <br></br>
             {Movieinfo.overview}
+            <h6 className='small'>Popularity: {Movieinfo.popularity}</h6>
+            <h6 className='small'>Vote Average: {Movieinfo.vote_average}</h6>
             </td>
             
         </tr>
