@@ -100,6 +100,7 @@ const Movierow = <table>
             </td>
             <td className = "table-container">
             <strong>{Movieinfo.title}</strong> <br></br>
+
             {Movieinfo.overview}
             <h6 className='small'>Popularity: {Movieinfo.popularity}</h6>
             <h6 className='small'>Vote Average: {Movieinfo.vote_average}</h6>

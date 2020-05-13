@@ -232,3 +232,11 @@ input[type= "radio"]{
   width: 300%;
   padding: 15px;
 }
+
+.pt-4, .py-4 {
+  padding-top: 0%;
+}
+
+.mt-4, .my-4 {
+  margin-top: 1px
+}

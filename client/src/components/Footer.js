@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaPinterest } from 'react-icons/fa'
 
 const FooterPage = () => {
     return (
-        <MDBFooter color="blue" className="font-small pt-4 mt-4 footerColor footer fixed-bottom">
+        <MDBFooter color="blue" className="font-small pt-0 mt-0 footerColor footer fixed-bottom">
             <MDBContainer fluid className="text-center text-md-left " >
                 <MDBRow>
                     <MDBCol md="3" style={{ justifyContent: "center", alignItems: "center" }}>
