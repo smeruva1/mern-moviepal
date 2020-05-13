@@ -124,7 +124,7 @@ function TopRatedMovies() {
                     <div>
 
                     <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
-                      userData.savedMovies?.some((savMovie) => savMovie.id === movie.id).rating :
+                      userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
                       movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                     <Button
