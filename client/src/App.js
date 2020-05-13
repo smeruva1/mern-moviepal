@@ -45,10 +45,6 @@ function App() {
         )
         .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
           
-          // console.log(username);
-          // console.log(savedMovies);
-          // console.log(friends);
-          // console.log(movieCount);
 
           await savedMovies.map( async movie => {
 
@@ -105,7 +101,9 @@ function App() {
     <Router>
       <>
         {/* wrap our entire app in context provider and provide userInfo state as value */}
+         
         <UserInfoContext.Provider value={userInfo}>
+          
           <Navbar />
           <Switch>
             <Route exact path='/search' component={SearchMovies} />
@@ -119,8 +117,12 @@ function App() {
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>
+     
       </>
+      
       <Footer />
+     
+      
     </Router>
   );
 }

@@ -92,21 +92,37 @@ const handleRateMovie = (id, rating) => {
     });
     setMovieinfo(updatedSearchMovies);
 }
-
+const Movierow = <table>
+<tbody>
+        <tr>
+            <td>
+                <img src={`http://image.tmdb.org/t/p/w185${Movieinfo.poster_path}`} alt={`the cover for ${Movieinfo.title}`} variant='top' />
+            </td>
+            <td className = "table-container">
+            {Movieinfo.title}
+            {Movieinfo.overview}
+            </td>
+            
+        </tr>
+    </tbody>
+    </table>
 
 
 return (
     <>
+    
         <Row>
-            <Col xs={12} md={6}>
+            {/* <Col md={12} md={12}>
+                
+
                 <CardColumns className="singlecol">
                     <Card key={Movieinfo.id} border='dark'>
                         {Movieinfo.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${Movieinfo.poster_path}`} alt={`the cover for ${Movieinfo.title}`} variant='top' /> : null}
-                        <Card.Body>
+                        <Card.Body className = "card">
                             <Card.Title>{Movieinfo.title}</Card.Title>
                             <h6 className='small'>Popularity: {Movieinfo.popularity}</h6>
                             <h6 className='small'>Vote Average: {Movieinfo.vote_average}</h6>
-                            {/* <Card.Text>{movie.overview}</Card.Text> */}
+                            <Card.Text>{Movieinfo.overview}</Card.Text> */}
                             {userData.username && (
                                 <div>
 
@@ -124,11 +140,12 @@ return (
                                         </Button> */}
                                 </div>
                             )}
-                        </Card.Body>
+                        {/* </Card.Body>
                     </Card>
 
                 </CardColumns>
-            </Col>
+            </Col> */}
+            {Movierow}
             <Col xs={12} md={6}>
                 < CardColumns >
                     {
@@ -146,7 +163,9 @@ return (
                         })
                     }
                 </CardColumns >
+                   
             </Col>
+            
         </Row>
     </>
 )

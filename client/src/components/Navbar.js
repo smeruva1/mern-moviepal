@@ -13,11 +13,12 @@ function AppNavbar() {
   const { username } = useContext(UserInfoContext);
   const [searchInput, setSearchInput] = useState('');
   const history = useHistory()
+  
 
   return (
     <>
       <Navbar className="color-nav" variant="white" expand='lg'>
-        {/* <Navbar className="navbarbg" expand='lg'> */}
+        
         <Container fluid>
           {/* <Col xs={12} md={3}> */}
 
@@ -43,28 +44,30 @@ function AppNavbar() {
           {/* <Navbar.Toggle aria-controls='navbar' /> */}
           {/* <Col xs={12} md={3}> */}
 
+
+
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <table>
                 <tr>
                   <td>
-                    <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" activeClassName="navbar__link--active" >
+                    <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" >
                       Home
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link" >
                       New Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/popular' className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/popular' className="navbar__link"> 
                       Popular Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/toprated' className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/toprated' className="navbar__link" >
                       Top Rated Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/tvshows' className="navbar__link" activeClassName="navbar__link--active">
+                    <Nav.Link as={Link} to='/tvshows' className="navbar__link" >
                       TV Shows
               </Nav.Link>
                   </td><td>
@@ -86,11 +89,11 @@ function AppNavbar() {
                   {username ? (
                     <>
                       <td>
-                        <Nav.Link as={Link} to='/saved' className="navbar__link" activeClassName="navbar__link--active">
+                        <Nav.Link as={Link} to='/saved' className="navbar__link" >
                           See {username}'s Watchlist
                   </Nav.Link>
                       </td><td>
-                        <Nav.Link onClick={AuthService.logout} className="navbar__link" activeClassName="navbar__link--active">Logout</Nav.Link>
+                        <Nav.Link onClick={AuthService.logout} className="navbar__link" >Logout</Nav.Link>
                       </td>
                     </>
                   ) : (
