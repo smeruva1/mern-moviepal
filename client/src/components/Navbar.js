@@ -7,18 +7,23 @@ import LoginForm from './LoginForm';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 
+
+
+
 function AppNavbar() {
 
   const [showModal, setShowModal] = useState(false);
   const { username } = useContext(UserInfoContext);
   const [searchInput, setSearchInput] = useState('');
   const history = useHistory()
-  
+  const [key, setKey] = useState('');
+
+
 
   return (
     <>
       <Navbar className="color-nav" variant="white" expand='lg'>
-        
+
         <Container fluid>
           {/* <Col xs={12} md={3}> */}
 
@@ -47,8 +52,9 @@ function AppNavbar() {
 
 
           <Navbar.Collapse id='navbar'>
+            
             <Nav className='ml-auto'>
-              <table>
+              <table className="nav.item">
                 <tr>
                   <td>
                     <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" >
@@ -59,7 +65,7 @@ function AppNavbar() {
                       New Movies
               </Nav.Link>
                   </td><td>
-                    <Nav.Link as={Link} to='/popular' className="navbar__link"> 
+                    <Nav.Link as={Link} to='/popular' className="navbar__link">
                       Popular Movies
               </Nav.Link>
                   </td><td>
@@ -70,7 +76,9 @@ function AppNavbar() {
                     <Nav.Link as={Link} to='/tvshows' className="navbar__link" >
                       TV Shows
               </Nav.Link>
+
                   </td><td>
+
                     <Form.Control
                       id="searchTextField"
                       value={searchInput}
@@ -85,6 +93,7 @@ function AppNavbar() {
                       placeholder='Search for a Movie'
                     />
                   </td>
+
                   {/* if user is logged in show saved movies and logout */}
                   {username ? (
                     <>

@@ -214,6 +214,9 @@ input[type= "radio"]{
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
   
+  padding: 10%;
+  overflow-wrap:normal
+  
 }
 
 .navbar__link--active {
