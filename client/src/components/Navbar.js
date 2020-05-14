@@ -6,6 +6,7 @@ import LoginForm from './LoginForm';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
+import LogoImages from '../images/MoviePal.PNG';
 
 
 
@@ -31,7 +32,7 @@ function AppNavbar() {
             <table>
               <tr>
                 <td>  <img
-                  src="./MoviePal.PNG"
+                  src={LogoImages}
                   // width="90"
                   height="50"
                   className="d-inline-block align-top logo"
