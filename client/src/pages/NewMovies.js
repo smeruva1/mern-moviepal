@@ -98,6 +98,7 @@ function NewMovies() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
+  
 
   return (
     <>
