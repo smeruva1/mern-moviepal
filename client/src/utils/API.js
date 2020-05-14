@@ -52,34 +52,34 @@ export const searchMovieByID = function (query) {
   //console.log(query);
   // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
   // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&query=' + query);
-  return axios.get('https://api.themoviedb.org/3/movie/'+query+'?api_key=' + process.env.REACT_APP_THEMOVIEDB +'&language=en-US');
+  return axios.get('https://api.themoviedb.org/3/movie/'+query+'?api_key=' + process.env.REACT_APP_THEMOVIEDB +'&country=US&language=en-US');
 }
 
 // make a search to The movie DB api
 export const searchTheMovies = function (query) {
   //console.log(query);
   // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
-  return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&query=' + query);
+  return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&country=US&language=en-US&query=' + query);
 
 };
 
 //popular movies
 export const popularTheMovies = function () {
   //console.log("Hi from popular API axios call");
-  return axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&language=en-US&page=1');
+  return axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&country=US&language=en-US&page=1');
 };
 
 //new movies
 export const newTheMovies = function () {
-  return axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&language=en-US&page=1');
+  return axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&country=US&language=en-US&page=1');
 };
 
 //Top Rated movies
 export const topRatedTheMovies = function () {
-  return axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&language=en-US&page=1');
+  return axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&country=US&language=en-US&page=1');
 };
 
 //TV Shows 
 export const tvShowsTheMovies = function () {
-  return axios.get('https://api.themoviedb.org/3/tv/popular?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&language=en-US&page=1');
+  return axios.get('https://api.themoviedb.org/3/tv/popular?api_key=' + process.env.REACT_APP_THEMOVIEDB + '&country=US&language=en-US&page=1');
 };
