@@ -46,7 +46,7 @@ module.exports = {
     userList.forEach(user => {
       user.savedMovies.forEach(movie => {
        //console.log(movie);
-        if (movie.id == params.movieid) {
+        if (movie.id === params.movieid) {
           // console.log("Hi");
           // console.log(movie.id, params.movieid);
           totalRating += movie.rating;

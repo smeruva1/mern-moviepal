@@ -49,18 +49,25 @@ function HomeMovies() {
     )
   }
 
-  const handleRateMovie = (id, rating, category) => {
+  const handleRateMovie = (id, rating) => {
 
     let movieToSave = [];
 
-    if (category === "popular") {
+    let category = "popular";
+
+    console.log(category, id, rating); 
+
+
+    if (category == "popular") {
       movieToSave = home5PopularMoviesResult.find((movie) => movie.id === id);
-    } else if (category === "toprated") {
+      console.log(category, id); 
+    } else if (category == "toprated") {
       movieToSave = home5TopRatedMoviesResult.find((movie) => movie.id === id);
-    } else if (category === "new") {
+    } else if (category == "new") {
       movieToSave = home5NewMoviesResult.find((movie) => movie.id === id);
     }
 
+    console.log(movieToSave);
 
     const updatedSearchMovies = [...movieToSave];
     // console.log(updatedSearchMovies);
@@ -193,7 +200,7 @@ function HomeMovies() {
 
                         <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
                           userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
-                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="popular" />
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                         <Button
                           disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
@@ -230,7 +237,7 @@ function HomeMovies() {
 
                         <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
                           userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
-                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="toprated" />
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie}/>
 
                         <Button
                           disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}
@@ -267,7 +274,7 @@ function HomeMovies() {
 
                         <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
                           userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
-                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} category="toprated" />
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
 
                         <Button
                           disabled={userData.savedMovies?.some((savedMovie) => savedMovie.id === movie.id)}

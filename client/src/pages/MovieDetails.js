@@ -23,11 +23,9 @@ function MovieDetails(props) {
 
     //    console.log(UserData.savedMovies);
 
-    // let selectedMovie = userData.savedMovies.filter(movie => movie.id === params.id);
-    // console.log(selectedMovie);
-
     useEffect(() => {
 
+        //Get and set one movie
         API.searchMovieByID(params.id)
             .then(({ data }) => {
                 //console.log(data);
@@ -36,6 +34,7 @@ function MovieDetails(props) {
     })
         .catch((err) => console.log(err));
 
+        //get where movie is available to stream
     API.getMovieDetails(params.id)
         .then(({ data }) => {
             console.log(data);
@@ -106,7 +105,7 @@ return (
                             <Card.Title>{Movieinfo.title}</Card.Title>
                             <h6 className='small'>Popularity: {Movieinfo.popularity}</h6>
                             <h6 className='small'>Vote Average: {Movieinfo.vote_average}</h6>
-                            {/* <Card.Text>{movie.overview}</Card.Text> */}
+                            <Card.Text>{Movieinfo.overview}</Card.Text>
                             {userData.username && (
                                 <div>
 
