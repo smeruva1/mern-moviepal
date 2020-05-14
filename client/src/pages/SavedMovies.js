@@ -90,7 +90,8 @@ function SavedMovies() {
             ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
         </h2>
-        <CardColumns>
+        <CardColumns >
+          {/* /* <Col md={12} md={12}>{ */}
           {userData.savedMovies.map((movie) => {
             return (
               <Card key={movie.id} border='dark'>

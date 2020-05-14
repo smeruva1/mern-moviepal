@@ -183,16 +183,16 @@ function HomeMovies() {
           <h1>Home</h1>
         </Container>
 
-
-        <Container>
+        <div class="w3-row">
+        <Container className = "w3-container">
           <h2>{home5PopularMoviesResult.length ? `Viewing Popular ${home5PopularMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
           <CardColumns>
             {home5PopularMoviesResult.map((movie) => {
               return (
-                <Card key={movie.id} border='dark'>
-                  {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
-                  <Card.Body >
-                    <Card.Title>{movie.title}</Card.Title>
+                <Card key={movie.id} border='dark' className= "w3-card">
+                  {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' className ="w3-card" /> : null}
+                  <Card.Body  className ="w3-card">
+                    <Card.Title className = "w3-card">{movie.title}</Card.Title>
                     <h6 className='small'>Popularity: {movie.popularity}</h6>
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
@@ -219,9 +219,10 @@ function HomeMovies() {
             })}
           </CardColumns>
         </Container>
+        </div>
 
-
-        <Container>
+        <div class="w3-row">
+        <Container className = "w3-half w3-container w3-mobile">
           <h2>{home5TopRatedMoviesResult.length ? `Viewing Top Rated ${home5TopRatedMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
           <CardColumns>
             {home5TopRatedMoviesResult.map((movie) => {
@@ -229,7 +230,7 @@ function HomeMovies() {
                 <Card key={movie.id} border='dark'>
                   {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                   <Card.Body>
-                    {/* <Card.Title>{movie.title}</Card.Title> */}
+                    <Card.Title className= "w3-card">{movie.title}</Card.Title>
                     <h6 className='small'>Popularity: {movie.popularity}</h6>
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
@@ -256,8 +257,9 @@ function HomeMovies() {
             })}
           </CardColumns>
         </Container>
+        </div>
 
-
+        <div class="w3-row">
         <Container>
           <h2>{home5NewMoviesResult.length ? `Viewing New ${home5NewMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
           <CardColumns>
@@ -266,7 +268,7 @@ function HomeMovies() {
                 <Card key={movie.id} border='dark'>
                   {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Title className= "w3-card">{movie.title}</Card.Title>
                     <h6 className='small'>Popularity: {movie.popularity}</h6>
                     <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                     {/* <Card.Text>{movie.overview}</Card.Text> */}
@@ -293,6 +295,8 @@ function HomeMovies() {
             })}
           </CardColumns>
         </Container>
+      
+      </div>
       </Container>
     </>
   );
