@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useMemo, useState, useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -76,14 +76,9 @@ function SavedMovies() {
       .catch((err) => console.log(err));
   };
 
+
   return (
     <>
-      {/* <Jumbotron fluid className='text-light bg-dark'> */}
-      <Container>
-        <h1>Watchlist!</h1>
-      </Container>
-      {/* </Jumbotron> */}
-
       <Container>
         <h2>
           {userData.savedMovies.length
@@ -91,15 +86,12 @@ function SavedMovies() {
             : 'You have no saved movies!'}
         </h2>
         <CardColumns >
-          {/* /* <Col md={12} md={12}>{ */}
           {userData.savedMovies.map((movie) => {
             return (
               <Card key={movie.id} border='dark'>
 
                 {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link> : null}
 
-                {/*{movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
-                 */}
 
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
@@ -107,7 +99,6 @@ function SavedMovies() {
                   <h6 className='small netRating'>Vote Average: {movie.vote_average}</h6>
                   <h6 className='small fandfRating'>Family Average: {movie.familyRating}</h6>
                   <h6 className='small fandfRating'>Friends Average: {movie.friendRating}</h6>
-                  {/* <Card.Text>{movie.overview.substring(0, 100).concat("...")}</Card.Text> */}
 
                   <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
                     userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
