@@ -117,27 +117,6 @@ function SearchMovies(props) {
   };
 
 
-  //   searchTheMovies(searchInput)
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       const movieData = data.results.map((movie) => ({
-  //         popularity: movie.popularity,
-  //         poster_path: movie.poster_path,
-  //         id: movie.id,
-  //         title: movie.title,
-  //         vote_average: movie.vote_average,
-  //         overview: movie.overview.substring(0, 100).concat("..."),
-  //         release_date: movie.release_date,
-  //         genre_ids: movie.genre_ids,
-  //         rating:0,
-  //       }));
-  //       console.log(movieData);
-
-  //       return setSearchedMovies(movieData);
-  //     })
-  //     .then(() => setSearchInput(''))
-  //     .catch((err) => console.log(err));
-  // };
 
   
   // create function to handle saving a movie to our database
@@ -169,7 +148,7 @@ function SearchMovies(props) {
               <Card key={movie.id} border='dark'>
                 {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
+                  {/* <Card.Title>{movie.title}</Card.Title> */}
                   <h6 className='small'>Popularity: {movie.popularity}</h6>
                   <h6 className='small'>Vote Average: {movie.vote_average}</h6>
                   {/* <Card.Text>{movie.overview}</Card.Text> */}
