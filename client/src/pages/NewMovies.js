@@ -107,8 +107,8 @@ function NewMovies() {
         <h1>New Movies!</h1>
       </Container>
       {/* </Jumbotron> */}
-
-      <Container>
+      <div class="w3-row">
+      <Container className = "w3-half w3-container w3-mobile w3-quarter">
         <h2>{newMoviesResult.length ? `Viewing ${newMoviesResult.length} results:` : 'Search for a movie to begin'}</h2>
         <CardColumns>
           {newMoviesResult.map((movie) => {
@@ -145,6 +145,7 @@ function NewMovies() {
           })}
         </CardColumns>
       </Container>
+      </div>
     </>
   );
 }
