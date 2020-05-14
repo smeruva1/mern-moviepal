@@ -38,3 +38,11 @@ we had multiple pages with unique attributes. what worked for one page wouldnt w
 
 ## Successes
 Fully working website with frontend reading and writing to backend in Heroku
+
+
+## Future backlog
+	
+* Get Genre and store
+* User and groups management
+* Update watchlist - move up or down
+* Differentiate between my streaming services and rest
