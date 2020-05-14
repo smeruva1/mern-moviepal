@@ -44,5 +44,6 @@ Fully working website with frontend reading and writing to backend in Heroku
 	
 * Get Genre and store
 * User and groups management
+* Show Family and Friends
 * Update watchlist - move up or down
 * Differentiate between my streaming services and rest
