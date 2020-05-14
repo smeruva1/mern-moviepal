@@ -23,11 +23,9 @@ function MovieDetails(props) {
 
     //    console.log(UserData.savedMovies);
 
-    // let selectedMovie = userData.savedMovies.filter(movie => movie.id === params.id);
-    // console.log(selectedMovie);
-
     useEffect(() => {
 
+        //Get and set one movie
         API.searchMovieByID(params.id)
             .then(({ data }) => {
                 //console.log(data);
@@ -36,6 +34,7 @@ function MovieDetails(props) {
     })
         .catch((err) => console.log(err));
 
+        //get where movie is available to stream
     API.getMovieDetails(params.id)
         .then(({ data }) => {
             console.log(data);
