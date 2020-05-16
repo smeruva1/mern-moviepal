@@ -108,7 +108,7 @@ function SearchMovies(props) {
           }))
 
         }
-        console.log(movieData);
+        //console.log(movieData);
         return setSearchedMovies(movieData);
       })
 

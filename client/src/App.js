@@ -45,16 +45,24 @@ function App() {
         )
         .then(async ({ username, email, savedMovies, friends, family, movieCount }) => {
           
+          //console.log(savedMovies);
 
           await savedMovies.map( async movie => {
+            
 
             if (friends.length > 0) {
               await API.getMovieRating(movie.id, friends, token)
                 .then(({ data }) => {
+
                   // console.log(data);
+                  // console.log(friends);
+                  // console.log(token);
+
+                  // console.log(friends.length);
                   
                   // console.log(data.rating);
                   // console.log(movie.friendRating);
+
 
                   movie.friendRating = data.rating;
 
@@ -66,7 +74,7 @@ function App() {
             }
 
             if (family.length > 0) {
-              await API.getMovieRating(movie.id, family, token)
+              await API.getMovieRating(movie.id, family, token)              
                 .then(({ data }) => {
 
                   // console.log(data);

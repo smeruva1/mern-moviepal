@@ -30,23 +30,24 @@ module.exports = {
 
 
   // get a movie rating for a user
-  async getMovieRating({ user = null, params }, res) {
-    
-    //console.log(params);
+  async getMovieRating({ user = null, params }, res) {     
+    // console.log("line 35 going to print");
+    // console.log(params);
 
     const userList = await User.find({
       _id: { $in: params.users.split(',') },
       "savedMovies.id": params.movieid
     });
-
-    //console.log(userList);
+    // console.log("line 42 going to print");
+    // console.log(userList);
 
     let totalRating = 0;
 
     userList.forEach(user => {
       user.savedMovies.forEach(movie => {
-       //console.log(movie);
-        if (movie.id === params.movieid) {
+        // console.log("line 49 going to print");
+        // console.log(movie);
+        if (movie.id == params.movieid) {
           // console.log("Hi");
           // console.log(movie.id, params.movieid);
           totalRating += movie.rating;
@@ -56,13 +57,13 @@ module.exports = {
       )
 
     })
-    //console.log(totalRating);
+    // console.log(totalRating);
 
     if (!userList) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
     }
 
-    //console.log({ rating: userList.length > 0? totalRating / userList.length : 0 });
+    // console.log({ rating: userList.length > 0? totalRating / userList.length : 0 });
 
      res.json({ rating: userList.length > 0? totalRating / userList.length : 0 });
   },

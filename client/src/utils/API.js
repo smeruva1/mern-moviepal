@@ -36,6 +36,11 @@ export const deleteMovie = function (movieId, token) {
 };
 
 export const getMovieRating = function (movieid, users, token) {
+  // console.log(movieid);
+  // console.log(users);
+  // console.log(token);
+
+  // console.log(axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } }));
   return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
 }
 
