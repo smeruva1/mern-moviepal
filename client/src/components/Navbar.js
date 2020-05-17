@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Navbar, NavLink, Nav, Col, Form, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Form, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -9,119 +9,98 @@ import AuthService from '../utils/auth';
 import LogoImages from '../images/MoviePal.PNG';
 
 
-
-
 function AppNavbar() {
 
   const [showModal, setShowModal] = useState(false);
   const { username } = useContext(UserInfoContext);
   const [searchInput, setSearchInput] = useState('');
   const history = useHistory()
-  const [key, setKey] = useState('');
+  //const [key, setKey] = useState('');
 
+   //create method to search for movies and set state on form submit
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (!searchInput) {
+      return false;
+    }
+  }
 
 
   return (
     <>
-      <Navbar className="color-nav" variant="white" expand='lg'>
+      <Navbar className="color-nav" variant="dark" collapseOnSelect expand='lg'>
+        {/* <Container fluid> */}
 
-        <Container fluid>
-          {/* <Col xs={12} md={3}> */}
+        <Navbar.Brand as={Link} to='/'>
+          <img
+            src={LogoImages}
+            // width="90"
+            height="50"
+            className="d-inline-block align-top logo"
+            alt="moviepal logo"
+          />
+          {' '}
+          <span>Enrich your movie list wisely</span>
+        </Navbar.Brand>
 
-          <Navbar.Brand as={Link} to='/'>
-            <table>
-              <tr>
-                <td>  <img
-                  src={LogoImages}
-                  // width="90"
-                  height="50"
-                  className="d-inline-block align-top logo"
-                  alt="moviepal logo"
-                /></td>
-                <td>
-                  {' '}
-                </td>
-                <td>
-                  <span>Enrich your movie list wisely</span>
-                </td>
-              </tr>
-            </table>
-          </Navbar.Brand>
-          {/* <Navbar.Toggle aria-controls='navbar' /> */}
-          {/* <Col xs={12} md={3}> */}
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
 
-
-
-          <Navbar.Collapse id='navbar'>
-            
-            <Nav className='ml-auto'>
-              <table className="nav.item">
-                <tr>
-                  <td>
-                    <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" >
-                      Home
+          <Nav className='ml-auto'>
+            <Nav.Link as={Link} to='/' eventKey='/' className="navbar__link" >
+              Home
               </Nav.Link>
-                  </td><td>
-                    <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link" >
-                      New Movies
+            <Nav.Link as={Link} to='/new' eventKey='/new' className="navbar__link" >
+              New Movies
               </Nav.Link>
-                  </td><td>
-                    <Nav.Link as={Link} to='/popular' className="navbar__link">
-                      Popular Movies
+            <Nav.Link as={Link} to='/popular' eventKey='/popular' className="navbar__link">
+              Popular Movies
               </Nav.Link>
-                  </td><td>
-                    <Nav.Link as={Link} to='/toprated' className="navbar__link" >
-                      Top Rated Movies
+            <Nav.Link as={Link} to='/toprated' eventKey='/toprated' className="navbar__link" >
+              Top Rated Movies
               </Nav.Link>
-                  </td><td>
-                    <Nav.Link as={Link} to='/tvshows' className="navbar__link" >
-                      TV Shows
+            <Nav.Link as={Link} to='/tvshows' eventKey='/tvshows' className="navbar__link" >
+              TV Shows
               </Nav.Link>
 
-                  </td><td>
+            {/* <Nav.Link as={Link} to='/search' eventKey='/search' className="navbar__link" > */}
+            <Form inline onSubmit={handleFormSubmit}>            
+              <Form.Control
+                id="searchTextField"
+                value={searchInput}
+                onKeyPress={(event) => {
+                  //   event.preventDefault();
 
-                    <Form.Control
-                      id="searchTextField"
-                      value={searchInput}
-                      onKeyPress={(event) => {
-                        if (event.charCode === 13) {
-                          history.push(`/search?searchText=${searchInput}`)
-                          setSearchInput('')
-                        }
-                      }}
-                      onChange={(event) => setSearchInput(event.target.value)}
-                      type='text'
-                      placeholder='Search for a Movie'
-                    />
-                  </td>
+                  if (event.charCode === 13) {
+                    history.push(`/search?searchText=${searchInput}`)
+                    setSearchInput('')
+                  }
+                }}
+                onChange={(event) => setSearchInput(event.target.value)}
+                type='text'
+                placeholder='Search for a Movie'
+              />
+            </Form> 
 
-                  {/* if user is logged in show saved movies and logout */}
-                  {username ? (
-                    <>
-                      <td>
-                        <Nav.Link as={Link} to='/saved' className="navbar__link" >
-                          See {username}'s Watchlist
-                  </Nav.Link>
-                      </td><td>
-                        <Nav.Link onClick={AuthService.logout} className="navbar__link" >Logout</Nav.Link>
-                      </td>
-                    </>
-                  ) : (
-                      <td>
-                        <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                      </td>
-                    )}
-                </tr>
-              </table>
-            </Nav>
+            {/* if user is logged in show saved movies and logout */}
+            {username ? (
+              <>
 
-          </Navbar.Collapse>
-          {/* </Col><Col xs={12} md={3}> */}
+                <Nav.Link as={Link} to='/saved' eventKey='/saved' className="navbar__link" >
+                  See {username}'s Watchlist
+                                </Nav.Link>
+                <Nav.Link onClick={AuthService.logout} className="navbar__link" >
+                  Logout</Nav.Link>
+              </>
+            ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              )}
+          </Nav>
 
-          {/* </Col> */}
-        </Container>
+        </Navbar.Collapse>
+        {/* </Container> */}
       </Navbar>
-
 
       {/* set modal data up */}
       <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>

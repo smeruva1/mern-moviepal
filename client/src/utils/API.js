@@ -36,6 +36,11 @@ export const deleteMovie = function (movieId, token) {
 };
 
 export const getMovieRating = function (movieid, users, token) {
+  // console.log(movieid);
+  // console.log(users);
+  // console.log(token);
+
+  // console.log(axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } }));
   return axios.get(`/api/users/movies/${movieid}/${users.join(',')}`,{ headers: { authorization: `Bearer ${token}` } });
 }
 
@@ -60,7 +65,7 @@ export const searchMovieByID = function (query) {
 export const searchTheMovies = function (query) {
   //console.log(query);
   // return axios.get('https://api.themoviedb.org/3/search/movie?api_key=1fec72236532ee89a303c5cc707f12e4&query=' + query);
-  return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + "1fec72236532ee89a303c5cc707f12e4" + '&country=US&language=en-US&query=' + query);
+   return axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + "1fec72236532ee89a303c5cc707f12e4" + '&country=US&language=en-US&query=' + query);
 
 };
 
