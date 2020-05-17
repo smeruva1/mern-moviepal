@@ -6,17 +6,18 @@ const FooterPage = () => {
     return (
         <MDBFooter color="blue" className="font-small pt-0 mt-0 footerColor footer fixed-bottom">
             <MDBContainer fluid className="text-center text-md-left " >
-                <MDBRow>
-                    <MDBCol md="3" style={{ justifyContent: "center", alignItems: "center" }}>
-                        <h5>&copy; {new Date().getFullYear()} Copyright: moviePal </h5>
+                <MDBRow style={{ display: "flex",  alignItems: "center"}}>
+                    <MDBCol md="4" className="text-left">
+                        <h5 style={{ color: 'white' }} >&copy; {new Date().getFullYear()} Copyright: moviePal </h5>
                     </MDBCol>
-                    <MDBCol md="3" style={{ justifyContent: "center", alignItems: "center"}}>
-                        <a href="https://www.themoviedb.org/">The Movie DB</a>
+                    <MDBCol md="4" className="text-center">
+                        <h5 style={{ color: 'white' }} > Partners: &nbsp;
+                         <a style={{ color: "#F49F1C" }} href="https://www.themoviedb.org/" target="_blank">The Movie DB</a>
+                         &nbsp; and &nbsp;
+                                <a style={{ color: "#F49F1C" }} href="https://rapidapi.com/utelly/api/utelly" target="_blank">uTelly API on RapidAPI</a>
+                        </h5>
                     </MDBCol>
-                    <MDBCol md="3" style={{ justifyContent: "center", alignItems: "center",}}>
-                        <a href="https://rapidapi.com/utelly/api/utelly">uTelly API on RapidAPI</a>
-                    </MDBCol>
-                    <MDBCol md="3" style={{ justifyContent: "center", alignItems: "center",}}>
+                    <MDBCol md="4" className="text-right">
                         <FaFacebook size={24} style={{ color: 'white', margin: "10px" }} />
                         <FaInstagram size={24} style={{ color: 'white', margin: "10px" }} />
                         <FaTwitter size={24} style={{ color: 'white', margin: "10px" }} />

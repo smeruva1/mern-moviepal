@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Container, Col, Button, Card, CardColumns, } from 'react-bootstrap';
+import { Container, Button, Card, Row, Col } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMovie, searchTheMovies } from '../utils/API';
 import queryString from 'query-string';
+import MoviePosterPlaceHolder from '../images/MoviePosterPlaceHolder.png';
 
 function SearchMovies(props) {
 
@@ -64,13 +64,14 @@ function SearchMovies(props) {
         movie.rating = rating;
       }
     });
-    setSearchedMovies(updatedSearchMovies);    
+    setSearchedMovies(updatedSearchMovies);
   }
 
 
   useEffect(() => {
     if (searchText) {
       searchFor(searchText)
+      
     }
   }, [searchText])
 
@@ -78,7 +79,7 @@ function SearchMovies(props) {
 
   // const userData = useContext(UserInfoContext);
 
-  // create method to search for movies and set state on form submit
+  //create method to search for movies and set state on form submit
   // const handleFormSubmit = (event) => {
   //   event.preventDefault();
 
@@ -91,7 +92,8 @@ function SearchMovies(props) {
   function searchFor(title) {
     searchTheMovies(title)
       .then(({ data }) => {
-        // console.log(JSON.stringify (data));
+        
+        console.log(JSON.stringify (data));
         let movieData = [];
         if (data != null && data != null) {
           // movieData.push(data.Search)
@@ -108,7 +110,7 @@ function SearchMovies(props) {
           }))
 
         }
-        //console.log(movieData);
+        console.log(movieData);
         return setSearchedMovies(movieData);
       })
 
@@ -118,7 +120,7 @@ function SearchMovies(props) {
 
 
 
-  
+
   // create function to handle saving a movie to our database
   const handleSaveMovie = (id) => {
     // find the movie in `searchedMovies` state by the matching id
@@ -140,48 +142,57 @@ function SearchMovies(props) {
 
   return (
     <>
-
       <Container>
-        <CardColumns>
-          {searchedMovies.map((movie) => {
-            return (
-              <Card key={movie.id} border='dark'>
-                {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : null}
-                <Card.Body>
-                  {/* <Card.Title>{movie.title}</Card.Title> */}
-                  <h6 className='small'>Popularity: {movie.popularity}</h6>
-                  <h6 className='small'>Vote Average: {movie.vote_average}</h6>
-                  {/* <Card.Text>{movie.overview}</Card.Text> */}
-
-
-                  {userData.username && (
-                    <div>
-
-                      <Star rating= {userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
-                        userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
-                        movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
-
-                      <Button
-                        disabled={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)}
-                        className='btn-block btn-info'
-                        onClick={() => handleSaveMovie(movie.id)}>
-
-                        {userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)
-                          ? 'In Watchlist!'
-                          : 'Add to Watchlist!'}
-
-                      </Button>
-
-                    </div>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-
+        <h3>Search Results</h3>
+        <h5>{searchedMovies.length ? `Viewing ${searchedMovies.length} results:` : 'Search for a movie to begin'}</h5>
       </Container>
 
+      {/* <div class="w3-row">*/}
+      {/* <Container className="w3-half w3-container w3-mobile w3-quarter"> */}
+      <Container fluid="md">
+        {/* <CardColumns> */}
+        <Row>
+          {searchedMovies.map((movie) => {
+            return (
+              <Col sm>
+
+                <Card key={movie.id} style={{ width: '10rem', margin: "4px" }} border='dark'>
+                  {movie.poster_path ? <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> : <Card.Img src={MoviePosterPlaceHolder} alt={`the cover for ${movie.title}`} variant='top' />}
+                  <Card.Body>
+                    {/* <Card.Title>{movie.title}</Card.Title> */}
+                    <h6 className='small'>Popularity: {movie.popularity}</h6>
+                    <h6 className='small'>Vote Average: {movie.vote_average}</h6>
+                    {/* <Card.Text>{movie.overview}</Card.Text> */}
+
+
+                    {userData.username && (
+                      <div>
+
+                        <Star rating={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id) ?
+                          userData.savedMovies?.find((savMovie) => savMovie.id === movie.id).rating :
+                          movie.rating} id={movie.id} handleRateMovie={handleRateMovie} />
+
+                        <Button
+                          disabled={userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)}
+                          className='btn-block btn-info'
+                          onClick={() => handleSaveMovie(movie.id)}>
+
+                          {userData.savedMovies?.some((savMovie) => savMovie.id === movie.id)
+                            ? 'In Watchlist!'
+                            : 'Add to Watchlist!'}
+
+                        </Button>
+
+                      </div>
+                    )}
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
+        {/* </CardColumns> */}
+      </Container>
     </>
   );
 }
