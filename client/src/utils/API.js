@@ -30,6 +30,26 @@ export const saveMovie = function (movieData, token) {
 
   return axios.put('/api/users', movieData, { headers: { authorization: `Bearer ${token}` } });
 };
+
+// save family data for a logged in user
+export const saveFamily = function (familyData, token) {
+   console.log(familyData);
+   console.log(token);
+
+  return axios.put('/api/users/family', familyData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+
+// save friend data for a logged in user
+export const saveFriend = function (friendData, token) {
+  console.log(friendData);
+  console.log(token);
+
+ return axios.put('/api/users/friend', friendData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+
+
 // remove saved movie data for a logged in user
 export const deleteMovie = function (movieId, token) {
   return axios.delete(`/api/users/movies/${movieId}`, { headers: { authorization: `Bearer ${token}` } });

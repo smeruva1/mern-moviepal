@@ -45,9 +45,22 @@ function MovieDetails(props) {
         //Get and set one movie
         API.searchMovieByID(params.id)
             .then(({ data }) => {
-                //console.log(data);
+                // console.log(data);
+                // console.log(data.id);
+                let obj = data;
+                
+                userData.savedMovies.forEach(movie => {
+                    if (movie.id == data.id) {
+                        // console.log(movie.id);
+                        // console.log(data.id);                               
 
-                return setMovieinfo(data);
+                        //console.log(obj);
+                        obj = { ...obj, familyRating: movie.familyRating, friendRating: movie.friendRating };
+                        //console.log(obj);
+                    }
+                });
+
+                return setMovieinfo(obj);
             })
             .catch((err) => console.log(err));
 
@@ -56,10 +69,11 @@ function MovieDetails(props) {
         // const genreName = Movieinfo.genres.map(gen => str += gen.name);
         // console.log(str, genreName);
 
+
         //get where movie is available to stream
         API.getMovieDetails(params.id)
             .then(({ data }) => {
-                console.log(data);
+                //console.log(data);
                 return setMovieDetail(data.collection.locations);
             })
             .catch((err) => console.log(err));
@@ -109,6 +123,7 @@ function MovieDetails(props) {
         updatedSearchMovies.forEach(movie => {
             if (movie.id === id) {
                 movie.rating = rating;
+                console.log(rating);
             }
         });
         setMovieinfo(updatedSearchMovies);
@@ -146,6 +161,7 @@ function MovieDetails(props) {
                                     <h6 className='small netRating'>Popularity: {Movieinfo.popularity}</h6>
                                     <h6 className='small netRating'>Vote Average: {Movieinfo.vote_average}</h6>
                                     <br></br>
+
                                     <h6 className='small fandfRating'>Family Average: {Movieinfo.familyRating}</h6>
                                     <h6 className='small fandfRating'>Friends Average: {Movieinfo.friendRating}</h6>
 
@@ -156,6 +172,7 @@ function MovieDetails(props) {
                                                 Movieinfo.rating} id={Movieinfo.id} handleRateMovie={handleRateMovie} />
                                         </div>
                                     )}
+
                                 </Card.Body>
                             </Card>
                         </Row>

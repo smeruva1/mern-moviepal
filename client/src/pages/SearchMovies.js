@@ -93,7 +93,7 @@ function SearchMovies(props) {
     searchTheMovies(title)
       .then(({ data }) => {
         
-        console.log(JSON.stringify (data));
+        //console.log(JSON.stringify (data));
         let movieData = [];
         if (data != null && data != null) {
           // movieData.push(data.Search)
@@ -110,7 +110,7 @@ function SearchMovies(props) {
           }))
 
         }
-        console.log(movieData);
+        //console.log(movieData);
         return setSearchedMovies(movieData);
       })
 

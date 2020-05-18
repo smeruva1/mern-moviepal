@@ -10,6 +10,8 @@ import TopRatedMovies from './pages/TopRatedMovies';
 import TVShows from './pages/TVShows';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FriendAndFamilyMgmt from './pages/FriendAndFamilyMgmt';
+
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -122,6 +124,7 @@ function App() {
             <Route exact path='/tvshows' component={TVShows} />
             <Route exact path='/saved' component={SavedMovies} />
             <Route exact path='/moviedetails/:id' component={MovieDetails} />
+            <Route exact path='/mynetwork' component={FriendAndFamilyMgmt} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

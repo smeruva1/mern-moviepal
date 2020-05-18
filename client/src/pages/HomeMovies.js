@@ -180,7 +180,7 @@ function HomeMovies() {
     <>
       <Container fluid="md">
         <Row>          
-          <h2>{home5PopularMoviesResult.length ? `Viewing Popular ${home5PopularMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
+          <h4>{home5PopularMoviesResult.length ? `Viewing Popular ${home5PopularMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h4>
         </Row>
 
         <Row>
@@ -222,7 +222,7 @@ function HomeMovies() {
 
         <Row>
 
-          <h2>{home5TopRatedMoviesResult.length ? `Viewing Top Rated ${home5TopRatedMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
+          <h4>{home5TopRatedMoviesResult.length ? `Viewing Top Rated ${home5TopRatedMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h4>
         </Row>
 
         <Row>
@@ -264,7 +264,7 @@ function HomeMovies() {
         </Row>
 
         <Row>
-          <h2>{home5NewMoviesResult.length ? `Viewing New ${home5NewMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h2>
+          <h4>{home5NewMoviesResult.length ? `Viewing New ${home5NewMoviesResult.length} Movies:` : 'Search for a movie to begin'}</h4>
         </Row>
 
         <Row>
