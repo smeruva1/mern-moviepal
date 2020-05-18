@@ -64,7 +64,7 @@ function PopularMovies() {
   useEffect(() => {
     popularTheMovies()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const movieData = data.results.map((movie) => ({
           popularity: movie.popularity,
           poster_path: movie.poster_path,
@@ -84,7 +84,7 @@ function PopularMovies() {
   const handleSaveMovie = (id) => {
     // find the movie in `PopularMovies` state by the matching id
     const movieToSave = popularMoviesResult.find((movie) => movie.id === id);
-    console.log(movieToSave);
+    //console.log(movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 

@@ -118,7 +118,39 @@ module.exports = {
     }
   },
 
+  // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
+  // user comes from `req.user` created in the auth middleware function
+  async saveFamily({ user, body }, res) {
+    //console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedFamily: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      //console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
+// save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
+  // user comes from `req.user` created in the auth middleware function
+  async saveFriend({ user, body }, res) {
+    //console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedFriend: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      //console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
   // remove a movie from `savedMovies`
   async deleteMovie({ user, params }, res) {

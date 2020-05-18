@@ -4,9 +4,11 @@ const {
   getAllUsers,
   getSingleUser,
   saveMovie,
+  saveFamily,
+  saveFriend,
   deleteMovie,
   login,
-  getMovieRating
+  getMovieRating,  
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -14,6 +16,11 @@ const { authMiddleware } = require('../../utils/auth');
 
 // put authMiddleware anywhere we need to send a token for verification of user
 router.route('/').get(getAllUsers).post(createUser).put(authMiddleware, saveMovie);
+
+
+router.route('/family').put(authMiddleware, saveFamily);
+
+router.route('/friend').put(authMiddleware, saveFriend);
 
 router.route('/movies/:movieid/:users').get(getMovieRating)
 

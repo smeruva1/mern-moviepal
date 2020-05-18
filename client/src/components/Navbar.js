@@ -86,12 +86,15 @@ function AppNavbar() {
             {/* if user is logged in show saved movies and logout */}
             {username ? (
               <>
-
                 <Nav.Link as={Link} to='/saved' eventKey='/saved' className="navbar__link" >
-                  See {username}'s Watchlist
-                                </Nav.Link>
+                    {username}'s Watchlist
+                </Nav.Link>
+                 <Nav.Link as={Link} to='/mynetwork' eventKey='/mynetwork' className="navbar__link" >
+                 {username}'s Network
+                </Nav.Link>
                 <Nav.Link onClick={AuthService.logout} className="navbar__link" >
-                  Logout</Nav.Link>
+                    Logout
+                </Nav.Link>
               </>
             ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>

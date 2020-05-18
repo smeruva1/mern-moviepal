@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Container, Button, Card, Row, Col } from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from 'react';
+import { Container, Button, Card, Row, Col, ListGroup } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 // import context for global state
@@ -12,6 +12,11 @@ import MoviePosterPlaceHolder from '../images/MoviePosterPlaceHolder.png';
 function SavedMovies() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+
+  //To store user names and id's
+  const [allUsers, setallUsers] = useState([]);
+  const [allFriends, setallFriends] = useState([]);
+  const [allFamily, setallFamily] = useState([]);
 
   const Star = (props) => {
 
@@ -77,16 +82,67 @@ function SavedMovies() {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+
+    API.getAllUsers()
+      .then(({ data }) => {
+        console.log(data);
+        const userInfo = data.map((user) => ({
+          id: user.id,
+          username: user.username
+        }));
+        return setallUsers(userInfo);
+      })
+      .catch((err) => console.log(err));
+
+  }, [])
+
 
   return (
     <>
+      <br></br>
+      <Container fluid="md">
+        <Row>
+          <Col sm>
 
+            <ListGroup>
+              <ListGroup.Item style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>My Friends</ListGroup.Item>
+              {userData.friends.map((friend) => {
+                return (
+                  <ListGroup.Item style={{ backgroundColor: "white", color: "grey", opacity: "0.9" }}>
+                    {allUsers?.some((allUser) => allUser.id == friend)
+                      ? allUsers?.find((allUser) => allUser.id == friend).username
+                      : null}
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+          </Col>
+
+          <Col sm>
+            <ListGroup>
+              <ListGroup.Item style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>My Family</ListGroup.Item>
+              {userData.family.map((family) => {
+                return (
+                  <ListGroup.Item style={{ backgroundColor: "white", color: "grey", opacity: "0.9" }}>
+                    {allUsers?.some((allUser) => allUser.id == family)
+                      ? allUsers?.find((allUser) => allUser.id == family).username
+                      : null}
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
+
+      <br></br>
       <Container>
         <h3>
           {userData.savedMovies.length
             ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
-        </h3>        
+        </h3>
       </Container>
 
       {/* <div class="w3-row">*/}
