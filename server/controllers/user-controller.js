@@ -104,7 +104,10 @@ module.exports = {
   // save a movie to a user's `savedMovies` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveMovie({ user, body }, res) {
-    //console.log(user);
+    // console.log("Inside user controller js file Savemovie function, to update user db doc") ;
+    // console.log(user);
+    // console.log(body);
+   
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
@@ -121,11 +124,17 @@ module.exports = {
   // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFamily({ user, body }, res) {
-    //console.log(user);
+    console.log("Inside user controller js file Savefamily function, to update user db doc") ;
+    console.log(user);
+    console.log(body);
+    console.log(JSON.stringify(body.id));
+   
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedFamily: body } },
+        { $addToSet: { family: body.id } },
+        // { $addToSet: { family: "5ebb253c619e093facbfda57" } },
+        
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -138,11 +147,12 @@ module.exports = {
 // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFriend({ user, body }, res) {
-    //console.log(user);
+    console.log(user);
+    console.log(body);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedFriend: body } },
+        { $addToSet: { friends: body.id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

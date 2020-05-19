@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Container, Button, Card, Row, Col, Form, Jumbotron, Table, InputGroup } from 'react-bootstrap';
+import { Container, Button, Card, Row, Col, Form, Jumbotron, Table } from 'react-bootstrap';
+import { RadioGroup, RadioButton, ReversedRadioButton } from 'react-radio-buttons';
+
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 // import context for global state
@@ -39,20 +41,23 @@ function SavedMovies() {
   // const handleFormSubmit = (event) => {
   //   event.preventDefault();
 
-    // if (!searchInput) {
-    //   return false;
-    // }
+  // if (!searchInput) {
+  //   return false;
+  // }
   // }
 
 
 
   // create function to handle saving a family or friend to logged in user
-  const handleSaveUserNetwork = (event, id, radioBtnValue) => {
-
-    event.preventDefault();
-
+  const handleSaveUserNetwork = (id, radioBtnValue) => {
     console.log(id);
+    console.log(JSON.stringify(id));
     console.log(radioBtnValue);
+
+    //event.preventDefault();
+
+    // console.log(id);
+    // console.log(radioBtnValue);
 
     // const movieToSave = searchedMovies.find((movie) => movie.id === id);
     // console.log(movieToSave);
@@ -60,6 +65,7 @@ function SavedMovies() {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
+      console.log("Hi no Token");
       return false;
     }
 
@@ -87,7 +93,9 @@ function SavedMovies() {
 
   return (
     <>
+
       <br></br>
+
       <Container fluid="md" style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>
         <br></br>
         <Jumbotron style={{ margin: "10px" }}>
@@ -97,9 +105,7 @@ function SavedMovies() {
                 <tr>
                   <th>#</th>
                   <th>User Name</th>
-                  <th>Family</th>
-                  <th>Friend</th>
-                  <th>Unassigned</th>
+                  <th>Add Friends and Family</th>
                 </tr>
               </thead>
               <tbody>
@@ -112,40 +118,21 @@ function SavedMovies() {
                       <td>{idx + 1}</td>
                       <td>{user.username}</td>
                       <td>
-                        <label className="radio-inline"><input type="radio" name="networkRadio" value="family"
-                          checked={userData.family?.some((savedFamily) => savedFamily == user.id)}
-                        /></label>
+                        {/* checked={userData.family?.some((savedFamily) => savedFamily == user.id)}
+       */}
+                        <RadioGroup  onChange={(value) => handleSaveUserNetwork({id: user.id}, value)} horizontal>
+                          <ReversedRadioButton value="family">
+                            <span style={{ color: "black" }}>Family</span>
+                          </ReversedRadioButton>
+                          <ReversedRadioButton value="friend">
+                            <span style={{ color: "black" }}>Friend</span>
+                          </ReversedRadioButton>
+                          <ReversedRadioButton value="none">
+                            <span style={{ color: "black" }}>None</span>
+                          </ReversedRadioButton>
+                        </RadioGroup>
                       </td>
 
-
-                      {/* <td>
-                        <label className="radio-inline"><input type="radio" name="networkRadio" /></label>
-                        </td> */}
-
-                      <td>
-                        <label className="radio-inline"><input type="radio" name="networkRadio" value="friend"
-                          checked={userData.friends?.some((savedFriend) => savedFriend == user.id)}
-                        /></label>
-                      </td>
-
-
-                      {/* <td>
-                          <label className="radio-inline"><input type="radio" name="networkRadio" /></label>
-                        </td> */}
-
-                      <td>
-                        <label className="radio-inline"><input type="radio" name="networkRadio" value="none"
-                        //  checked = {userData.friend?.some((savedFriend) => savedFriend ==user.id)}
-
-                        /></label>
-                      </td>
-
-
-                      <td>
-                        <Button type="submit" size="lg" block
-                          //onClick={() => handleSaveUserNetwork(user.id, networkRadio.value)}>Save</Button>
-                          onClick={() => handleSaveUserNetwork(user.id, "family")}>Save</Button>
-                      </td>
                     </tr>
                   );
 
