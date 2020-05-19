@@ -39,5 +39,5 @@ Fully working website with frontend reading and writing to backend Mongo in Hero
 * User and groups management
 * Update watchlist - move up or down
 * Differentiate between my streaming services and rest
-* Add more color themse and dark modes
+* Add more color themes and dark modes
 * Add Table/Grid toggle, sorting, filtering by Title
