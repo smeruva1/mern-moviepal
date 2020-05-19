@@ -1,48 +1,43 @@
-# mern-moviepal
+# moviePal - enrich your movie list wisely
 
 ## Overview
-During this time of quarantine.... we created an App to help ease our daily stress of picking a perfect Movie. 
-we understand there are many movie rating app, but our's stand out solely based on the  credibility of family and friends .
-Movipal, is a movie app which determines what your family or friends rated a movie.
 
+During this time of quarantine.... we created an App to help ease our daily stress of picking a perfect Movie. We understand there are many movie rating apps, but our's stand out solely based on the credibility of family and friends. moviePal, is a movie app which allows you to search for Movies, maintain a single watchlist, rate Movies, show real time availability at streaming services and most importantly rating by your family and friends.
 
 
 ## Technologies
 
-* React
-* Node, express server
-* Mongo DB 
-* Props
-* JSX
-* JSX variables
+* react-bootstrap
+* Node.js
+* Express
+* Mongo
+* mongoose
+* axios
+* bcrypt
+* jsonwebtoken
+* react Navbar
+* react-router-dom
 * Heroku
 * themoviedb API
 * utelly API
 
 
-
-## MVC Architecture
-express handlebars
-JSONwebtoken
-bcrypt
-eslint
-prettier
-
-
-
 ## Challenges
-we started with a OMDB API, which gave us limited information 
-5 days to deadline, we had to drop the repo and created a new repo to accomodate User/Login info 
-we had multiple pages with unique attributes. what worked for one page wouldnt work for the other
+
+we started with a OMDB API, which gave us limited information and after the app was ready started to integrate jsonwebtoken. 
+5 days to deadline, we had to drop the repo and created a new repo to first get User/Login info working with jsonwebtoken before adding Movie info. 
 
 
 ## Successes
-Fully working website with frontend reading and writing to backend in Heroku
+
+Fully working website with frontend reading and writing to backend Mongo in Heroku.
 
 
 ## Future backlog
-	
+
 * Get Genre and store
 * User and groups management
 * Update watchlist - move up or down
 * Differentiate between my streaming services and rest
+* Add more color themse and dark modes
+* Add Table/Grid toggle, sorting, filtering by Title

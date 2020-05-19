@@ -48,8 +48,10 @@ function SavedMovies() {
 
   // create function to handle saving a family or friend to logged in user
   const handleSaveUserNetwork = (event, id, radioBtnValue) => {
+    console.log(id);
+    console.log(radioBtnValue);
 
-    event.preventDefault();
+    //event.preventDefault();
 
     console.log(id);
     console.log(radioBtnValue);
@@ -60,6 +62,7 @@ function SavedMovies() {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
+      console.log("Hi no Toekn");
       return false;
     }
 
@@ -144,7 +147,7 @@ function SavedMovies() {
                       <td>
                         <Button type="submit" size="lg" block
                           //onClick={() => handleSaveUserNetwork(user.id, networkRadio.value)}>Save</Button>
-                          onClick={() => handleSaveUserNetwork(user.id, "family")}>Save</Button>
+                          onClick={() => handleSaveUserNetwork({id: "5ebb2501619e093facbfda54"}, "family")}>Save</Button>
                       </td>
                     </tr>
                   );

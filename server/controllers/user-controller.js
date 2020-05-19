@@ -121,11 +121,12 @@ module.exports = {
   // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFamily({ user, body }, res) {
-    //console.log(user);
+    console.log(user);
+    console.log(body);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedFamily: body } },
+        { $addToSet: { Family: body } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -138,11 +139,12 @@ module.exports = {
 // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFriend({ user, body }, res) {
-    //console.log(user);
+    console.log(user);
+    console.log(body);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedFriend: body } },
+        { $addToSet: { Friends: body } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
