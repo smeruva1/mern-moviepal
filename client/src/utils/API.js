@@ -33,7 +33,9 @@ export const saveMovie = function (movieData, token) {
 
 // save family data for a logged in user
 export const saveFamily = function (familyData, token) {
-   console.log(familyData);
+  console.log("Inside API js file Savefamily function, about to do axios.put to update") ;
+  console.log(familyData);
+  console.log(JSON.stringify(familyData));
    console.log(token);
 
   return axios.put('/api/users/family', familyData, { headers: { authorization: `Bearer ${token}` } });

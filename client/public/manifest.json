@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "moviePal",
+  "name": "moviePal - enrich your movie list wisely",
   "icons": [
     {
       "src": "favicon.ico",
