@@ -154,7 +154,7 @@ function SavedMovies() {
             return (
               <Col className="mb-3" xs={12} md={4} lg={3}>
                 {/* <Card key={movie.id} style={{ width: '10rem', margin: "4px" }} border='dark'> */}
-                <Card key={movie.id} border='dark'>
+                <Card key={movie.id} style={{ width: '10rem', margin: "4px" }} border='dark'>
 
                   {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link> : null}
 

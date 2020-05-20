@@ -7,6 +7,7 @@ During this time of quarantine.... we created an App to help ease our daily stre
 
 ## Technologies
 
+* react hooks
 * react-bootstrap
 * Node.js
 * Express
@@ -22,11 +23,14 @@ During this time of quarantine.... we created an App to help ease our daily stre
 * utelly API
 
 
+
 ## Challenges
 
 we started with a OMDB API, which gave us limited information and after the app was ready started to integrate jsonwebtoken. 
 5 days to deadline, we had to drop the repo and created a new repo to first get User/Login info working with jsonwebtoken before adding Movie info. 
 
+## MVC
+![](mvc.PNG)
 
 ## Successes
 
