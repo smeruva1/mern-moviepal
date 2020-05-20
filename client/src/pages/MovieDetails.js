@@ -123,7 +123,7 @@ function MovieDetails(props) {
         updatedSearchMovies.forEach(movie => {
             if (movie.id === id) {
                 movie.rating = rating;
-                console.log(rating);
+                //console.log(rating);
             }
         });
         setMovieinfo(updatedSearchMovies);

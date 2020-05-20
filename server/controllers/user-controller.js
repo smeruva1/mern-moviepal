@@ -30,7 +30,7 @@ module.exports = {
 
 
   // get a movie rating for a user
-  async getMovieRating({ user = null, params }, res) {     
+  async getMovieRating({ user = null, params }, res) {
     // console.log("line 35 going to print");
     // console.log(params);
 
@@ -53,7 +53,7 @@ module.exports = {
           totalRating += movie.rating;
         }
       }
-      
+
       )
 
     })
@@ -65,7 +65,7 @@ module.exports = {
 
     // console.log({ rating: userList.length > 0? totalRating / userList.length : 0 });
 
-     res.json({ rating: userList.length > 0? totalRating / userList.length : 0 });
+    res.json({ rating: userList.length > 0 ? totalRating / userList.length : 0 });
   },
 
 
@@ -107,7 +107,7 @@ module.exports = {
     // console.log("Inside user controller js file Savemovie function, to update user db doc") ;
     // console.log(user);
     // console.log(body);
-   
+
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
@@ -124,17 +124,18 @@ module.exports = {
   // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFamily({ user, body }, res) {
-    console.log("Inside user controller js file Savefamily function, to update user db doc") ;
-    console.log(user);
-    console.log(body);
-    console.log(JSON.stringify(body.id));
-   
+    // console.log("Inside user controller js file Savefamily function, to update user db doc") ;
+    // console.log(user);
+    // console.log(body);
+    // console.log(JSON.stringify(body.id));
+
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { family: body.id } },
-        // { $addToSet: { family: "5ebb253c619e093facbfda57" } },
-        
+        {
+          $addToSet: { family: body.id },
+          $pull: { friends: body.id }
+        },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -144,15 +145,18 @@ module.exports = {
     }
   },
 
-// save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
+  // save a family to a user's `savedFamily` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
   async saveFriend({ user, body }, res) {
-    console.log(user);
-    console.log(body);
+    // console.log(user);
+    // console.log(body);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { friends: body.id } },
+        {
+          $addToSet: { friends: body.id },
+          $pull: { family: body.id }
+        },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -161,6 +165,28 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+
+  // delete family and friend for a user
+  // user comes from `req.user` created in the auth middleware function
+  async deleteFamilyAndFriend({ user, body }, res) {
+    // console.log("Hi from deleteF&F");
+    // console.log(user);
+    // console.log(body);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        {
+          $pull: { family: body.id, friends: body.id }
+        },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      //console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
 
   // remove a movie from `savedMovies`
   async deleteMovie({ user, params }, res) {
