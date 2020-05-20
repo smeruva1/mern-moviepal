@@ -26,7 +26,7 @@ function SavedMovies() {
 
     API.getAllUsers()
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         const userInfo = data.map((user) => ({
           id: user.id,
           username: user.username
@@ -50,14 +50,7 @@ function SavedMovies() {
 
   // create function to handle saving a family or friend to logged in user
   const handleSaveUserNetwork = (id, radioBtnValue) => {
-    console.log(id);
-    console.log(JSON.stringify(id));
-    console.log(radioBtnValue);
-
     //event.preventDefault();
-
-    // console.log(id);
-    // console.log(radioBtnValue);
 
     // const movieToSave = searchedMovies.find((movie) => movie.id === id);
     // console.log(movieToSave);
@@ -65,7 +58,7 @@ function SavedMovies() {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
-      console.log("Hi no Token");
+      // console.log("Hi no Token");
       return false;
     }
 
@@ -83,8 +76,14 @@ function SavedMovies() {
         .then(() => userData.getUserData())
         .catch((err) => console.log(err));
 
-    }
+    } else if (radioBtnValue === "none") {
 
+      console.log("Hi from none...calling API")
+      API.deleteFamilyAndFriend(id, token)
+        .then(() => userData.getUserData())
+        .catch((err) => console.log(err));
+
+    }
   };
 
 
@@ -105,7 +104,7 @@ function SavedMovies() {
                 <tr>
                   <th>#</th>
                   <th>User Name</th>
-                  <th>Add Friends and Family</th>
+                  <th>Manage Friends and Family</th>
                 </tr>
               </thead>
               <tbody>
@@ -120,16 +119,21 @@ function SavedMovies() {
                       <td>
                         {/* checked={userData.family?.some((savedFamily) => savedFamily == user.id)}
        */}
-                        <RadioGroup  onChange={(value) => handleSaveUserNetwork({id: user.id}, value)} horizontal>
-                          <ReversedRadioButton value="family">
-                            <span style={{ color: "black" }}>Family</span>
+                        <RadioGroup onChange={(value) => handleSaveUserNetwork({ id: user.id }, value)} horizontal>
+                          
+                          <ReversedRadioButton value="family" checked={userData.family?.some((savedFamily) => savedFamily == user.id)}>
+                            <span style={{ color: "black", shadowOffset: { width: 0, height: 2 } }}>Family</span>
                           </ReversedRadioButton>
-                          <ReversedRadioButton value="friend">
+
+                          <ReversedRadioButton value="friend" checked={userData.friends?.some((savedFriends) => savedFriends == user.id)}>
                             <span style={{ color: "black" }}>Friend</span>
                           </ReversedRadioButton>
-                          <ReversedRadioButton value="none">
+
+                          <ReversedRadioButton value="none" checked={ userData.family?.some((savedFamily) => savedFamily == user.id) ? false :
+                            userData.friends?.some((savedFriends) => savedFriends == user.id) ? false : true}>
                             <span style={{ color: "black" }}>None</span>
                           </ReversedRadioButton>
+
                         </RadioGroup>
                       </td>
 

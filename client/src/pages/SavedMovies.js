@@ -104,22 +104,6 @@ function SavedMovies() {
       <Container fluid="md">
         <Row>
           <Col sm>
-
-            <ListGroup>
-              <ListGroup.Item style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>My Friends</ListGroup.Item>
-              {userData.friends.map((friend) => {
-                return (
-                  <ListGroup.Item style={{ backgroundColor: "white", color: "grey", opacity: "0.9" }}>
-                    {allUsers?.some((allUser) => allUser.id == friend)
-                      ? allUsers?.find((allUser) => allUser.id == friend).username
-                      : null}
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          </Col>
-
-          <Col sm>
             <ListGroup>
               <ListGroup.Item style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>My Family</ListGroup.Item>
               {userData.family.map((family) => {
@@ -127,6 +111,22 @@ function SavedMovies() {
                   <ListGroup.Item style={{ backgroundColor: "white", color: "grey", opacity: "0.9" }}>
                     {allUsers?.some((allUser) => allUser.id == family)
                       ? allUsers?.find((allUser) => allUser.id == family).username
+                      : null}
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+
+          </Col>
+
+          <Col sm>
+            <ListGroup>
+              <ListGroup.Item style={{ backgroundColor: "#2F2F4F", color: "white", opacity: "0.9" }}>My Friends</ListGroup.Item>
+              {userData.friends.map((friend) => {
+                return (
+                  <ListGroup.Item style={{ backgroundColor: "white", color: "grey", opacity: "0.9" }}>
+                    {allUsers?.some((allUser) => allUser.id == friend)
+                      ? allUsers?.find((allUser) => allUser.id == friend).username
                       : null}
                   </ListGroup.Item>
                 );
@@ -152,8 +152,9 @@ function SavedMovies() {
         <Row>
           {userData.savedMovies.map((movie) => {
             return (
-              <Col sm>
-                <Card key={movie.id} style={{ width: '10rem', margin: "4px" }} border='dark'>
+              <Col className="mb-3" xs={12} md={4} lg={3}>
+                {/* <Card key={movie.id} style={{ width: '10rem', margin: "4px" }} border='dark'> */}
+                <Card key={movie.id} border='dark'>
 
                   {movie.poster_path ? <Link to={'/moviedetails/' + movie.id}> <Card.Img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`the cover for ${movie.title}`} variant='top' /> </Link> : null}
 

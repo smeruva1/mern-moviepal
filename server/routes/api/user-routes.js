@@ -6,6 +6,7 @@ const {
   saveMovie,
   saveFamily,
   saveFriend,
+  deleteFamilyAndFriend,
   deleteMovie,
   login,
   getMovieRating,  
@@ -21,6 +22,8 @@ router.route('/').get(getAllUsers).post(createUser).put(authMiddleware, saveMovi
 router.route('/family').put(authMiddleware, saveFamily);
 
 router.route('/friend').put(authMiddleware, saveFriend);
+
+router.route('/deletenetwork').put(authMiddleware, deleteFamilyAndFriend);
 
 router.route('/movies/:movieid/:users').get(getMovieRating)
 

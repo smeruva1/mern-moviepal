@@ -33,10 +33,10 @@ export const saveMovie = function (movieData, token) {
 
 // save family data for a logged in user
 export const saveFamily = function (familyData, token) {
-  console.log("Inside API js file Savefamily function, about to do axios.put to update") ;
-  console.log(familyData);
-  console.log(JSON.stringify(familyData));
-   console.log(token);
+  // console.log("Inside API js file Savefamily function, about to do axios.put to update") ;
+  // console.log(familyData);
+  // console.log(JSON.stringify(familyData));
+  //  console.log(token);
 
   return axios.put('/api/users/family', familyData, { headers: { authorization: `Bearer ${token}` } });
 };
@@ -44,11 +44,29 @@ export const saveFamily = function (familyData, token) {
 
 // save friend data for a logged in user
 export const saveFriend = function (friendData, token) {
-  console.log(friendData);
-  console.log(token);
+  // console.log(friendData);
+  // console.log(token);
 
  return axios.put('/api/users/friend', friendData, { headers: { authorization: `Bearer ${token}` } });
 };
+
+// save friend data for a logged in user
+export const deleteFamilyAndFriend = function (id, token) {
+  // console.log(id);
+  // console.log(token);
+
+ return axios.put('/api/users/deletenetwork', id, { headers: { authorization: `Bearer ${token}` } });
+};
+
+
+// Remove family & friend data for a logged in user
+export const Friend = function (friendData, token) {
+  // console.log(friendData);
+  // console.log(token);
+
+ return axios.put('/api/users/friend', friendData, { headers: { authorization: `Bearer ${token}` } });
+};
+
 
 
 

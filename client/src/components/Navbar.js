@@ -32,7 +32,7 @@ function AppNavbar() {
       <Navbar className="color-nav" variant="dark" collapseOnSelect expand='lg'>
         {/* <Container fluid> */}
 
-        <Navbar.Brand as={Link} to='/'>
+        <Navbar.Brand as={Link} to='/' className="d-flex align-items-center">
           <img
             src={LogoImages}
             // width="90"
@@ -40,8 +40,7 @@ function AppNavbar() {
             className="d-inline-block align-top logo"
             alt="moviepal logo"
           />
-          {' '}
-          <span>Enrich your movie list wisely</span>
+          <span style={{marginLeft: "10px"}}>enrich your movie list wisely</span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -97,7 +96,7 @@ function AppNavbar() {
                 </Nav.Link>
               </>
             ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)} className="navbar__link">Login/Sign Up</Nav.Link>
               )}
           </Nav>
 
