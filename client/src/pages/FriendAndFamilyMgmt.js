@@ -121,16 +121,16 @@ function SavedMovies() {
        */}
                         <RadioGroup onChange={(value) => handleSaveUserNetwork({ id: user.id }, value)} horizontal>
                           
-                          <ReversedRadioButton value="family" checked={userData.family?.some((savedFamily) => savedFamily == user.id)}>
+                          <ReversedRadioButton value="family" checked={userData.family?.some((savedFamily) => savedFamily == user.id)}iconInnerSize={1}>
                             <span style={{ color: "black", shadowOffset: { width: 0, height: 2 } }}>Family</span>
                           </ReversedRadioButton>
 
-                          <ReversedRadioButton value="friend" checked={userData.friends?.some((savedFriends) => savedFriends == user.id)}>
+                          <ReversedRadioButton value="friend" checked={userData.friends?.some((savedFriends) => savedFriends == user.id)} iconInnerSize={1}>
                             <span style={{ color: "black" }}>Friend</span>
                           </ReversedRadioButton>
 
                           <ReversedRadioButton value="none" checked={ userData.family?.some((savedFamily) => savedFamily == user.id) ? false :
-                            userData.friends?.some((savedFriends) => savedFriends == user.id) ? false : true}>
+                            userData.friends?.some((savedFriends) => savedFriends == user.id) ? false : true} iconInnerSize={1}>
                             <span style={{ color: "black" }}>None</span>
                           </ReversedRadioButton>
 
